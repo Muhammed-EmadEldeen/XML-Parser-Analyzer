@@ -1,0 +1,48 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <regex>
+
+using namespace std;
+
+
+stack<pair<string, int>> readXmlTagsWithLineNumbers(const string& filename) {
+    stack<pair<string, int>> tagStack;
+    ifstream file(filename);
+
+    if (!file.is_open()) {
+        throw runtime_error("Failed to open file: " + filename);
+    }
+
+    string line;
+    int lineNumber = 0;
+    regex tagRegex("<([a-zA-Z0-9:_-]+)(\\s[^>]*)?>|</([a-zA-Z0-9:_-]+)>|<!\\[CDATA\\[(.*?)\\]\]>|<!--(.*?)-->");
+    smatch match;
+
+    while (getline(file, line)) {
+        lineNumber++;
+
+        // Find all matches in the current linne
+
+        string::const_iterator searchStart(line.cbegin());
+        while (regex_search(searchStart, line.cend(), match, tagRegex)) {
+            if (match[1].matched) {
+                // Opening tag
+                tagStack.emplace(match[1].str(), lineNumber);
+            } else if (match[3].matched) {
+                // Closing tag (not added to stack, but you can modify behavior if needed)
+                // Uncomment below if closing tags are required in stack:
+                // tagStack.emplace("/" + match[3].str(), lineNumber);
+            }
+
+            searchStart = match.suffix().first;
+        }
+    }
+
+    file.close();
+    return tagStack;
+}
+
+
