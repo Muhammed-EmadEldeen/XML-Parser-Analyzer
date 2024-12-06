@@ -6,6 +6,7 @@
 #include <QListView>
 #include <QStringListModel>
 #include <QFileDialog>
+#include <QStandardItemModel>
 
 
 QT_BEGIN_NAMESPACE
@@ -37,5 +38,7 @@ private:
     Ui::MainWindow *ui;
     QStringListModel *model;
     QListView *listView;
+    QStandardItemModel *model_1;
+    void loadXMLAsPlainText(const QString &filePath);
 };
 #endif // MAINWINDOW_H

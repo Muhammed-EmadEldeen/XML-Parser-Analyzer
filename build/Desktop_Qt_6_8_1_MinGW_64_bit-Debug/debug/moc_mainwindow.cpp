@@ -121,7 +121,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->on_pushButton_clicked(); break;
         case 1: _t->on_label_linkActivated((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-
+        //case 2: _t->onSelectionChanged((*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[2]))); break;
+        //case 3: _t->on_listView_indexesMoved((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        //case 4: _t->on_listView_indexesMoved((*reinterpret_cast< std::add_pointer_t<QModelIndexList>>(_a[1]))); break;
         default: ;
         }
     }
