@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
         "background-color:white;"
         "border : 4px solid white ; "
         "border-radius: 7px ;"
-        "color: black ;}"
+        "color: white ;}"
 
 
 
