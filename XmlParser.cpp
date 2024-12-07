@@ -1,3 +1,7 @@
+#include <stack>
+#include <string>
+#include <vector>
+
 
 class XmlParser {
 public:
