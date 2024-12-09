@@ -13,6 +13,29 @@ struct Tag {
 };
 
 
+struct Error {
+
+    string tagName;
+    int tagLine;
+
+    string errType;
+    /*
+
+                * errType *
+
+   "Closing tag has no matching opening tag." at the end of the code
+
+   "Opening tag has no matching closing tag." at the start of the code
+
+   "Opening tag unclosed properly."
+
+   "Closed tag unopened properly."
+
+
+   */
+};
+
+
 // Helper function to check if a tag is a closing tag
 bool isClosingTag(const string& tag);
 
