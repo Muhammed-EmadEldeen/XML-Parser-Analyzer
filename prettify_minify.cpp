@@ -9,7 +9,7 @@
 using namespace std;
 
 // Function to prettify XML
-void prettifyXML(const string& inputFileName, const string& outputFileName) {
+void prettifyXML(const string& inputFileName,const string& outputFileName) {
     ifstream inputFile(inputFileName);
     if (!inputFile.is_open()) {
         cerr << "Error: Unable to open input file: " << inputFileName << std::endl;
@@ -22,10 +22,10 @@ void prettifyXML(const string& inputFileName, const string& outputFileName) {
         return;
     }
 
-    string line, xmlContent;
-    // Read the entire XML file line by line and concatenate into a single string
-    while (getline(inputFile, line)) {
-        xmlContent += line;
+    string line,xmlContent;
+    vector<string> xmlContentSec; // Vector to hold all lines from the input file
+    while (getline(inputFile, line)) { 
+        xmlContentSec.push_back(line); 
     }
     inputFile.close();
 
@@ -37,7 +37,18 @@ void prettifyXML(const string& inputFileName, const string& outputFileName) {
     bool insideTag = false; // Flag to check if the current character is within a tag
     int indentationLevel = 0;  // Keeps track of the current indentation level
     int f = 0;  // Flag to manage single line tags
-    unsigned int size = xmlContent.size();
+    
+
+    for (const auto& l : xmlContentSec) {//minify the input first to remove already indentations
+        int j = 0;
+        // Remove leading whitespace from the line
+        while (l.size() && isspace(static_cast<unsigned char>(l[j]))) {
+            j++;
+        }
+        xmlContent += l.substr(j);
+    }
+    
+unsigned int size = xmlContent.size();
 
     // Iterate over each character in the XML content
     for (unsigned int i = 0; i < size; i++) {
