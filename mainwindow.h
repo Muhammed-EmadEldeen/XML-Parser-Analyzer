@@ -34,6 +34,8 @@ private slots:
 
     void on_listView_indexesMoved(const QModelIndexList &indexes);
 
+    void on_Prettifybtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;

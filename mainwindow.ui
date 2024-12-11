@@ -33,7 +33,7 @@
      <string>Import </string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="Prettifybtn">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -46,7 +46,7 @@
      <string>Prettify</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="Detectbtn">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -59,7 +59,7 @@
      <string>Detect</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="correctbtn">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -72,7 +72,7 @@
      <string>Correct</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="Compressbtn">
     <property name="geometry">
      <rect>
       <x>430</x>
@@ -85,7 +85,7 @@
      <string>Compress</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="Decompressbtn">
     <property name="geometry">
      <rect>
       <x>560</x>

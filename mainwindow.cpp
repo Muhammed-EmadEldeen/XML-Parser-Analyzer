@@ -8,6 +8,12 @@
 #include <QStandardItem>
 #include <QDebug>
 
+
+void saveFile() {
+    // Save file dialog
+
+}
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -60,9 +66,24 @@ void MainWindow::loadXMLAsPlainText(const QString &filePath)
     file.close();
 }
 
+
+
 void MainWindow::on_label_linkActivated(const QString &link)
 {
 
 }
 
+
+
+void MainWindow::on_Prettifybtn_clicked()
+{
+    QFile data("output.txt");
+
+     if (!data.open(QFile::WriteOnly | QFile::Truncate)) {
+
+        qDebug() << "Can't open file";
+
+
+    }
+}
 
