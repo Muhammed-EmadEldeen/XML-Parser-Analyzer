@@ -10,7 +10,7 @@
 #include <QMessageBox>
 #include <iostream>
 #include <string.h>
-
+#include "XmlParser.cpp"
 
 using namespace std;
 

@@ -7,6 +7,10 @@
 #include <QFile>
 #include <QStandardItem>
 #include <QDebug>
+#include "XmlParser.cpp"
+
+
+QString file ;
 
 
 void saveFile() {
@@ -32,7 +36,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
 
-    QString file =
+     file =
         QFileDialog::getOpenFileName(this, "Open a file", "directoryToOpen",
                                      "XML files (*.xml)");
 
@@ -68,22 +72,54 @@ void MainWindow::loadXMLAsPlainText(const QString &filePath)
 
 
 
-void MainWindow::on_label_linkActivated(const QString &link)
-{
-
-}
 
 
 
 void MainWindow::on_Prettifybtn_clicked()
 {
-    QFile data("output.txt");
-
-     if (!data.open(QFile::WriteOnly | QFile::Truncate)) {
-
-        qDebug() << "Can't open file";
+    //XmlParser::prettifyXML() ;      ////////should take some parameters
+ }
 
 
-    }
+ void MainWindow::on_Minifybtn_clicked()
+ {
+     //XmlParser::minifyXML();
+ }
+
+void MainWindow::on_Detectbtn_clicked()
+{
+    XmlParser::XML_error_detection();
 }
+
+
+void MainWindow::on_correctbtn_clicked()
+{
+   // XmlParser::correctXml() ;
+}
+
+
+void MainWindow::on_Compressbtn_clicked()
+{
+    //XmlParser::byte_pair_compress( &file) ;
+}
+
+
+void MainWindow::on_Decompressbtn_clicked()
+{
+    XmlParser::decompress();
+}
+
+
+
+void MainWindow::on_XMLExpButton_clicked()
+{
+
+}
+
+
+void MainWindow::on_JsonExpButton_clicked()
+{
+    XmlParser::json();
+}
+
 

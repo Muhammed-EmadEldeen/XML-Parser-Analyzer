@@ -36,6 +36,24 @@ private slots:
 
     void on_Prettifybtn_clicked();
 
+    void on_Detectbtn_clicked();
+
+    void on_correctbtn_clicked();
+
+    void on_Compressbtn_clicked();
+
+    void on_Decompressbtn_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_XMLExpButton_clicked();
+
+    void on_JsonExpButton_clicked();
+
+    void on_Prettifybtn_2_clicked();
+
+    void on_Minifybtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
