@@ -1,3 +1,4 @@
+#include "XmlParser.cpp"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -9,7 +10,7 @@
 using namespace std;
 
 // Function to prettify XML
-void prettifyXML(const string& inputFileName,const string& outputFileName) {
+void XmlParser::prettifyXML(const string& inputFileName,const string& outputFileName) {
     ifstream inputFile(inputFileName);
     if (!inputFile.is_open()) {
         cerr << "Error: Unable to open input file: " << inputFileName << std::endl;
@@ -110,7 +111,7 @@ unsigned int size = xmlContent.size();
 }
 
 
- void minifyXML(const string& inputFileName, const string& outputFileName) {
+ void XmlParser::minifyXML(const string& inputFileName, const string& outputFileName) {
     ifstream inputFile(inputFileName);
     if (!inputFile.is_open()) { 
         cerr << "Error: Unable to open input file: " << inputFileName << endl;
