@@ -5,7 +5,7 @@
 
 
 #include "Tags_utilities.h"
-
+#include "XmlParser.cpp"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ stack<Tag> readxml() {
 
 
 // Function to detect XML errors
-vector<Error> XML_error_detection() {
+vector<Error> XmlParser::XML_error_detection() {
     stack<Tag> tags = readxml(); // Input stack with line numbers
     stack<Tag> reversedTags;     // To reverse the input stack
     vector<Error> errors;       // To store error messages
