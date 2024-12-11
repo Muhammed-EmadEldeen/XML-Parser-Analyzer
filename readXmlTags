@@ -10,13 +10,13 @@
 
 using namespace std;
 
-struct XmlTag {
-    string tagName;
-    int lineNumber;
-    XmlTag(const string& name, int line) : tagName(name), lineNumber(line) {}
+struct Tag {
+    string Name;
+    int line;
+    XmlTag(const string& name, int line) : Name(name), line(line) {}
 };
 
-stack<pair<string, int>> readXmlTagsWithLineNumbers(const string& filename) {
+stack<Tag> readXmlTagsWithLineNumbers(const string& filename) {
     stack<XmlTag> tempStack;
     stack<pair<string, int>> resultStack;
     ifstream file(filename);
@@ -46,11 +46,6 @@ stack<pair<string, int>> readXmlTagsWithLineNumbers(const string& filename) {
 
     while (!tempStack.empty()) {
         const XmlTag& tag = tempStack.top();
-        resultStack.emplace(tag.tagName, tag.lineNumber);
-        tempStack.pop();
-    }
-
-    return resultStack;
-}
+        resultStack.emplace(tag.tagName,
 
 
