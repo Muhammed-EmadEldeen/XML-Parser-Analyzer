@@ -1,24 +1,20 @@
-
-
-
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <stack>
 #include <string>
 #include <regex>
+#include <stdexcept>
 
 using namespace std;
 
 struct Tag {
-    string Name;
-    int line;
-    XmlTag(const string& name, int line) : Name(name), line(line) {}
+    string name; 
+    int line;    // Line number of the tage
+    Tag(const string& tagName, int lineNumber) : name(tagName), line(lineNumber) {}
 };
 
 stack<Tag> readXmlTagsWithLineNumbers(const string& filename) {
-    stack<XmlTag> tempStack;
-    stack<pair<string, int>> resultStack;
+    stack<Tag> resultStack;
     ifstream file(filename);
 
     if (!file.is_open()) {
@@ -27,7 +23,7 @@ stack<Tag> readXmlTagsWithLineNumbers(const string& filename) {
 
     string line;
     int lineNumber = 0;
-    regex tagRegex("<([a-zA-Z0-9:_-]+)(\\s[^>]*)?>|</([a-zA-Z0-9:_-]+)>|<!\\[CDATA\\[(.*?)\\]\]>|<!--(.*?)-->");
+    regex tagRegex("<([a-zA-Z0-9:_-]+)(\\s[^>]*)?>|</([a-zA-Z0-9:_-]+)>|<!\\[CDATA\\[(.*?)\\]\\]>|<!--(.*?)-->");
     smatch match;
 
     while (getline(file, line)) {
@@ -35,17 +31,20 @@ stack<Tag> readXmlTagsWithLineNumbers(const string& filename) {
 
         string::const_iterator searchStart(line.cbegin());
         while (regex_search(searchStart, line.cend(), match, tagRegex)) {
-            if (match[1].matched) {
-                tempStack.emplace(XmlTag(match[1].str(), lineNumber));
+            if (match[1].matched) { // Opening tag
+                resultStack.emplace(match[1].str(), lineNumber);
+            } else if (match[3].matched) { // Closing tag
+                resultStack.emplace("/" + match[3].str(), lineNumber);
+            } else if (match[4].matched) { // CDATA content
+                resultStack.emplace("CDATA: " + match[4].str(), lineNumber);
+            } else if (match[5].matched) { // Comment
+                resultStack.emplace("Comment: " + match[5].str(), lineNumber);
             }
             searchStart = match.suffix().first;
         }
     }
 
     file.close();
-
-    while (!tempStack.empty()) {
-        const XmlTag& tag = tempStack.top();
-        resultStack.emplace(tag.tagName,
-
+    return resultStack;
+}
 
