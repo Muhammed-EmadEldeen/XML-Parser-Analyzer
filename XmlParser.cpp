@@ -3,6 +3,7 @@
 #include <vector>
 
 using namespace std;
+
 class XmlParser {
 public:
   ~XmlParser();
@@ -20,5 +21,3 @@ public:
   static void minifyXML(const string &inputFileName,
                         const string &outputFileName);
 };
-
-
