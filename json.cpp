@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <XmlParser.cpp>
 
 using namespace std;
 
@@ -151,8 +152,7 @@ string transform_to_json(tree_node node){
 
 }
 
-int test () {
-    string text = "<bookstore><book><title>The Great Gatsby</title><author>F. Scott Fitzgerald</author><year>1925</year><price>10.99</price></book><book><title>Le Petit Prince</title><author>Antoine de Saint-Exupéry</author><year>1943</year><price>7.99</price></book><book><title>Cien Años de Soledad</title><author>Gabriel García Márquez</author><year>1967</year><price>12.50</price></book></bookstore>";
+void XmlParser :: json (string text) {
     tree_node root = parse_xml(text);
     string json = transform_to_json(root);
     ofstream json_file("output.json");
@@ -162,5 +162,4 @@ int test () {
         json_file.close();
     }
     //cout<<"{" + json + "}";
-    return 0;
 }
