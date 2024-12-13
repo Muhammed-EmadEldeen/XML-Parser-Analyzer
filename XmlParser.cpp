@@ -8,7 +8,7 @@ class XmlParser {
 public:
   ~XmlParser();
 
-  static vector<string> XML_error_detection();
+  static vector<Error> XML_error_detection();
   static string byte_pair_compress(const string &input);
   static stack<pair<string, int>>
   readXmlTagsWithLineNumbers(const string &filename);
