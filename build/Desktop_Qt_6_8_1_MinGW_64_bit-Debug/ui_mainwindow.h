@@ -13,11 +13,12 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -27,14 +28,17 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
-    QPushButton *pushButton_5;
-    QPushButton *pushButton_6;
+    QPushButton *Prettifybtn;
+    QPushButton *Detectbtn;
+    QPushButton *correctbtn;
+    QPushButton *Compressbtn;
+    QPushButton *Decompressbtn;
     QListView *listView;
-    QSlider *verticalSlider;
-    QSlider *horizontalSlider;
+    QListWidget *listWidget;
+    QPushButton *Minifybtn;
+    QPushButton *JsonExpButton;
+    QPushButton *XMLExpButton;
+    QTextEdit *textEdit;
     QLabel *label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -49,41 +53,50 @@ public:
         centralwidget->setObjectName("centralwidget");
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(50, 470, 93, 29));
+        pushButton->setGeometry(QRect(162, 480, 111, 29));
         pushButton->setStyleSheet(QString::fromUtf8(""));
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(50, 410, 93, 29));
-        pushButton_3 = new QPushButton(centralwidget);
-        pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(180, 410, 93, 29));
-        pushButton_4 = new QPushButton(centralwidget);
-        pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setGeometry(QRect(310, 410, 93, 29));
-        pushButton_5 = new QPushButton(centralwidget);
-        pushButton_5->setObjectName("pushButton_5");
-        pushButton_5->setGeometry(QRect(430, 410, 93, 29));
-        pushButton_6 = new QPushButton(centralwidget);
-        pushButton_6->setObjectName("pushButton_6");
-        pushButton_6->setGeometry(QRect(560, 410, 93, 29));
+        Prettifybtn = new QPushButton(centralwidget);
+        Prettifybtn->setObjectName("Prettifybtn");
+        Prettifybtn->setGeometry(QRect(20, 410, 93, 29));
+        Detectbtn = new QPushButton(centralwidget);
+        Detectbtn->setObjectName("Detectbtn");
+        Detectbtn->setGeometry(QRect(270, 410, 93, 29));
+        correctbtn = new QPushButton(centralwidget);
+        correctbtn->setObjectName("correctbtn");
+        correctbtn->setGeometry(QRect(400, 410, 93, 29));
+        Compressbtn = new QPushButton(centralwidget);
+        Compressbtn->setObjectName("Compressbtn");
+        Compressbtn->setGeometry(QRect(520, 410, 93, 29));
+        Decompressbtn = new QPushButton(centralwidget);
+        Decompressbtn->setObjectName("Decompressbtn");
+        Decompressbtn->setGeometry(QRect(640, 410, 93, 29));
         listView = new QListView(centralwidget);
         listView->setObjectName("listView");
         listView->setGeometry(QRect(160, 20, 431, 311));
-        verticalSlider = new QSlider(centralwidget);
-        verticalSlider->setObjectName("verticalSlider");
-        verticalSlider->setGeometry(QRect(560, 60, 22, 231));
-        verticalSlider->setOrientation(Qt::Orientation::Vertical);
-        horizontalSlider = new QSlider(centralwidget);
-        horizontalSlider->setObjectName("horizontalSlider");
-        horizontalSlider->setGeometry(QRect(210, 300, 331, 22));
-        horizontalSlider->setOrientation(Qt::Orientation::Horizontal);
+        listWidget = new QListWidget(centralwidget);
+        listWidget->setObjectName("listWidget");
+        listWidget->setGeometry(QRect(160, 340, 431, 51));
+        Minifybtn = new QPushButton(centralwidget);
+        Minifybtn->setObjectName("Minifybtn");
+        Minifybtn->setGeometry(QRect(150, 410, 93, 29));
+        JsonExpButton = new QPushButton(centralwidget);
+        JsonExpButton->setObjectName("JsonExpButton");
+        JsonExpButton->setGeometry(QRect(310, 480, 111, 29));
+        JsonExpButton->setStyleSheet(QString::fromUtf8(""));
+        XMLExpButton = new QPushButton(centralwidget);
+        XMLExpButton->setObjectName("XMLExpButton");
+        XMLExpButton->setGeometry(QRect(450, 480, 121, 29));
+        XMLExpButton->setStyleSheet(QString::fromUtf8(""));
+        textEdit = new QTextEdit(centralwidget);
+        textEdit->setObjectName("textEdit");
+        textEdit->setGeometry(QRect(603, 120, 181, 211));
         label = new QLabel(centralwidget);
         label->setObjectName("label");
-        label->setGeometry(QRect(330, 470, 441, 41));
+        label->setGeometry(QRect(650, 90, 141, 20));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 26));
+        menubar->setGeometry(QRect(0, 0, 800, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -98,12 +111,15 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "Import ", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Prettify", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "Detect", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "Correct", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("MainWindow", "Compress", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("MainWindow", "Decompress", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "File saved", nullptr));
+        Prettifybtn->setText(QCoreApplication::translate("MainWindow", "Prettify", nullptr));
+        Detectbtn->setText(QCoreApplication::translate("MainWindow", "Detect", nullptr));
+        correctbtn->setText(QCoreApplication::translate("MainWindow", "Correct", nullptr));
+        Compressbtn->setText(QCoreApplication::translate("MainWindow", "Compress", nullptr));
+        Decompressbtn->setText(QCoreApplication::translate("MainWindow", "Decompress", nullptr));
+        Minifybtn->setText(QCoreApplication::translate("MainWindow", "Minify", nullptr));
+        JsonExpButton->setText(QCoreApplication::translate("MainWindow", "Export As Json", nullptr));
+        XMLExpButton->setText(QCoreApplication::translate("MainWindow", "Export As XML", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Enter Text", nullptr));
     } // retranslateUi
 
 };

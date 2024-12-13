@@ -2,12 +2,17 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMainWindow>
 #include <QListView>
 #include <QStringListModel>
 #include <QFileDialog>
 #include <QStandardItemModel>
-
+#include <QPushButton>
+#include <QDialog>
+#include <QVBoxLayout>
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QFile>
+#include <QTextStream>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,7 +30,9 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
+    void on_AddTextButton_clicked();
+    void on_textEdit_textChanged();
+    bool saveToFile(const QString &filePath, const QString &content);
     void on_label_linkActivated(const QString &link);
 
         void onSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);  // Add this for selection change
@@ -60,5 +67,6 @@ private:
     QListView *listView;
     QStandardItemModel *model_1;
     void loadXMLAsPlainText(const QString &filePath);
+    void loadXMLFromText(const QString &text);
 };
 #endif // MAINWINDOW_H
