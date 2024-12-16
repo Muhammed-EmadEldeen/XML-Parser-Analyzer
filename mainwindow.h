@@ -13,6 +13,8 @@
 #include <QTextEdit>
 #include <QFile>
 #include <QTextStream>
+#include <QListWidgetItem>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,37 +31,45 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
-    void on_AddTextButton_clicked();
+
+
     void on_textEdit_textChanged();
     bool saveToFile(const QString &filePath, const QString &content);
-    void on_label_linkActivated(const QString &link);
-
-        void onSelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);  // Add this for selection change
-    void on_listView_indexesMoved(const QModelIndex &index);  // Declare the slot here
 
 
     void on_listView_indexesMoved(const QModelIndexList &indexes);
 
     void on_Prettifybtn_clicked();
 
-    void on_Detectbtn_clicked();
+    /*void on_Detectbtn_clicked();
 
     void on_correctbtn_clicked();
-
+*/
     void on_Compressbtn_clicked();
-
+/*
     void on_Decompressbtn_clicked();
-
-    void on_pushButton_2_clicked();
 
     void on_XMLExpButton_clicked();
 
-    void on_JsonExpButton_clicked();
-
-    void on_Prettifybtn_2_clicked();
+    void on_JsonExpButton_clicked();*/
 
     void on_Minifybtn_clicked();
+
+    //void on_listWidget_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+
+    void on_textEdit_copyAvailable(bool b);
+
+    void on_listView_activated(const QModelIndex &index);
+
+    void on_ImportButton_clicked();
+
+    void on_listView_windowTitleChanged(const QString &title);
+
+
+    //void on_XMLExpButton_clicked();
+
+
+    void on_XMLExpButton_clicked();
 
 private:
     Ui::MainWindow *ui;

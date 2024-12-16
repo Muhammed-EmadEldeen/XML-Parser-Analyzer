@@ -17,9 +17,6 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 
-
-
-
     QApplication a(argc, argv);
 
      a.setStyleSheet(
@@ -59,6 +56,11 @@ int main(int argc, char *argv[])
         "color: white ;}"
 
 
+        "QTextEdit{"
+        "background-color:white;"
+        "border : 4px solid white ; "
+        "border-radius: 7px ;"
+        "color: white ;}"
 
 
 
@@ -103,9 +105,24 @@ int main(int argc, char *argv[])
 
 
 
+   /* string mode = argv[1];
+    string input_file = argv[3];
+    string output_file = argv[5];
+    string content = read_file(input_file);
+    string result;
 
+    if (mode == "compress") {
+        result = XmlParser::byte_pair_compress(content);
+    }
+    write_file(output_file, result);
+    if (mode == "compress") {
+        for (const auto& pair : mapping) {
+            cout << pair.first << " -> " << pair.second << endl;
+        }
 
+    }
 
+*/
 
 
 

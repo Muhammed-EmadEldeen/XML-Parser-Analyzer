@@ -27,7 +27,6 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QPushButton *pushButton;
     QPushButton *Prettifybtn;
     QPushButton *Detectbtn;
     QPushButton *correctbtn;
@@ -40,6 +39,7 @@ public:
     QPushButton *XMLExpButton;
     QTextEdit *textEdit;
     QLabel *label;
+    QPushButton *ImportButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -51,10 +51,6 @@ public:
         MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(162, 480, 111, 29));
-        pushButton->setStyleSheet(QString::fromUtf8(""));
         Prettifybtn = new QPushButton(centralwidget);
         Prettifybtn->setObjectName("Prettifybtn");
         Prettifybtn->setGeometry(QRect(20, 410, 93, 29));
@@ -93,10 +89,14 @@ public:
         label = new QLabel(centralwidget);
         label->setObjectName("label");
         label->setGeometry(QRect(650, 90, 141, 20));
+        ImportButton = new QPushButton(centralwidget);
+        ImportButton->setObjectName("ImportButton");
+        ImportButton->setGeometry(QRect(170, 480, 111, 29));
+        ImportButton->setStyleSheet(QString::fromUtf8(""));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 800, 26));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -110,7 +110,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Import ", nullptr));
         Prettifybtn->setText(QCoreApplication::translate("MainWindow", "Prettify", nullptr));
         Detectbtn->setText(QCoreApplication::translate("MainWindow", "Detect", nullptr));
         correctbtn->setText(QCoreApplication::translate("MainWindow", "Correct", nullptr));
@@ -119,7 +118,16 @@ public:
         Minifybtn->setText(QCoreApplication::translate("MainWindow", "Minify", nullptr));
         JsonExpButton->setText(QCoreApplication::translate("MainWindow", "Export As Json", nullptr));
         XMLExpButton->setText(QCoreApplication::translate("MainWindow", "Export As XML", nullptr));
+        textEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Enter Text", nullptr));
+        ImportButton->setText(QCoreApplication::translate("MainWindow", "Import", nullptr));
     } // retranslateUi
 
 };

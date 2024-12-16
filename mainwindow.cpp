@@ -13,8 +13,9 @@
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QTextStream>
-#include "XmlParser.cpp"
 
+
+#include "XmlParser.cpp"
 
 QString file ;
 
@@ -46,10 +47,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_ImportButton_clicked()
 {
-
-     file =
+    file =
         QFileDialog::getOpenFileName(this, "Open a file", "directoryToOpen",
                                      "XML files (*.xml)");
 
@@ -62,6 +62,9 @@ void MainWindow::on_pushButton_clicked()
 
     }
 }
+
+
+
 
 void MainWindow::loadXMLAsPlainText(const QString &filePath)
 {
@@ -76,7 +79,8 @@ void MainWindow::loadXMLAsPlainText(const QString &filePath)
     // Read the file line by line and add each line as an item in the model
     while (!file.atEnd()) {
         QString line = file.readLine().trimmed(); // Read and trim each line
-        QStandardItem *item = new QStandardItem(line);
+        QString smallLine = line.length() > 20 ? line.left(20) + "..." : line;
+        QStandardItem *item = new QStandardItem(smallLine);
         model_1->appendRow(item); // Add the line as an item in the model
     }
 
@@ -140,51 +144,51 @@ void MainWindow::on_Prettifybtn_clicked()
         loadXMLAsPlainText(outputFileName);
         QMessageBox::information(this, "prettify Complete", "The XML file has been prettified and saved.");
     }
- }
+}
 
 
- void MainWindow::on_Minifybtn_clicked() {
-     QString textContent = ui->textEdit->toPlainText();
+void MainWindow::on_Minifybtn_clicked() {
+    QString textContent = ui->textEdit->toPlainText();
 
-     if (!textContent.isEmpty()) {
-         QString inputFilePath = QDir::currentPath() + "/temp_input.xml";
-         QString outputFilePath = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
+    if (!textContent.isEmpty()) {
+        QString inputFilePath = QDir::currentPath() + "/temp_input.xml";
+        QString outputFilePath = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
 
-         if (outputFilePath.isEmpty()) {
-             QMessageBox::warning(this, "No File Selected", "Please select a location to save the minified XML file.");
-             return;
-         }
+        if (outputFilePath.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select a location to save the minified XML file.");
+            return;
+        }
 
-         if (saveToFile(inputFilePath, textContent)) {
-             qDebug() << "Content of textEdit saved to:" << inputFilePath;
-             XmlParser::minifyXML(inputFilePath.toStdString(), outputFilePath.toStdString());
-             qDebug() << "XML minified. Output saved to:" << outputFilePath;
-             loadXMLAsPlainText(outputFilePath);
-         } else {
-             QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
-         }
+        if (saveToFile(inputFilePath, textContent)) {
+            qDebug() << "Content of textEdit saved to:" << inputFilePath;
+            XmlParser::minifyXML(inputFilePath.toStdString(), outputFilePath.toStdString());
+            qDebug() << "XML minified. Output saved to:" << outputFilePath;
+            loadXMLAsPlainText(outputFilePath);
+        } else {
+            QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
+        }
 
-     } else {
-         QString inputFileName = QFileDialog::getOpenFileName(this, "Open XML File", "", "XML Files (*.xml)");
+    } else {
+        QString inputFileName = QFileDialog::getOpenFileName(this, "Open XML File", "", "XML Files (*.xml)");
 
-         if (inputFileName.isEmpty()) {
-             QMessageBox::warning(this, "No File Selected", "Please select an XML file to minify.");
-             return;
-         }
+        if (inputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select an XML file to minify.");
+            return;
+        }
 
-         QString outputFileName = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
+        QString outputFileName = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
 
-         if (outputFileName.isEmpty()) {
-             QMessageBox::warning(this, "No File Selected", "Please select a location to save the minified XML file.");
-             return;
-         }
+        if (outputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select a location to save the minified XML file.");
+            return;
+        }
 
-         XmlParser::minifyXML(inputFileName.toStdString(), outputFileName.toStdString());
-         loadXMLAsPlainText(outputFileName);
-         QMessageBox::information(this, "Minify Complete", "The XML file has been minified and saved.");
-     }
- }
-
+        XmlParser::minifyXML(inputFileName.toStdString(), outputFileName.toStdString());
+        loadXMLAsPlainText(outputFileName);
+        QMessageBox::information(this, "Minify Complete", "The XML file has been minified and saved.");
+    }
+}
+/*
 
 void MainWindow::on_Detectbtn_clicked()
 {
@@ -232,7 +236,7 @@ void MainWindow::on_Detectbtn_clicked()
 
 void MainWindow::on_correctbtn_clicked()
 {
-   // XmlParser::correctXml() ;
+    // XmlParser::correctXml() ;
 }
 
 
@@ -295,7 +299,119 @@ void MainWindow::on_XMLExpButton_clicked()
 
 void MainWindow::on_JsonExpButton_clicked()
 {
-   // XmlParser::json();
+    // XmlParser::json();
 }
 
+*/
+
+void MainWindow::on_listView_indexesMoved(const QModelIndexList &indexes)
+{
+
+}
+
+
+
+
+
+void MainWindow::on_textEdit_copyAvailable(bool b)
+{
+
+}
+
+
+void MainWindow::on_listView_activated(const QModelIndex &index)
+{
+
+}
+
+
+
+
+
+
+
+void MainWindow::on_listView_windowTitleChanged(const QString &title)
+{
+
+}
+
+void on_listWidget_currentItemChanged (QListWidgetItem *current, QListWidgetItem *previous){
+
+}
+
+
+
+void MainWindow::on_Compressbtn_clicked()
+{
+
+    QString textContent = ui->textEdit->toPlainText();
+
+    if (!textContent.isEmpty()) {
+        QString inputFilePath = QDir::currentPath() + "/temp_input.xml";
+        QString outputFilePath = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
+
+        if (outputFilePath.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select a location to save the minified XML file.");
+            return;
+        }
+
+        if (saveToFile(inputFilePath, textContent)) {
+            qDebug() << "Content of textEdit saved to:" << inputFilePath;
+           //////// XmlParser::compress(inputFilePath.toStdString(), outputFilePath.toStdString());
+            qDebug() << "XML minified. Output saved to:" << outputFilePath;
+            loadXMLAsPlainText(outputFilePath);
+        } else {
+            QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
+        }
+
+    } else {
+        QString inputFileName = QFileDialog::getOpenFileName(this, "Open XML File", "", "XML Files (*.xml)");
+
+        if (inputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select an XML file to minify.");
+            return;
+        }
+
+        QString outputFileName = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
+
+        if (outputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select a location to save the minified XML file.");
+            return;
+        }
+
+       ///////////// XmlParser::minifyXML(inputFileName.toStdString(), outputFileName.toStdString());
+        loadXMLAsPlainText(outputFileName);
+        QMessageBox::information(this, "Minify Complete", "The XML file has been minified and saved.");
+    }
+
+}
+
+
+void MainWindow::on_XMLExpButton_clicked()
+{
+    QString outputFilePath = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
+    qDebug() << "Failed to open file for writing:" << outputFilePath  ;
+    if (outputFilePath.isEmpty()) {
+        QMessageBox::warning(this, "No File Selected", "Please select a location to save the minified XML file.");
+        return;
+    }
+    QFile file (outputFilePath) ;
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Error", "Failed to open the file.");
+        return;
+    }
+
+    QTextStream out (&file) ;
+
+    QString content = ui->textEdit->toPlainText() ;
+    qDebug() << "Failed to open file for writing:" << content ;
+    out<<content ;
+
+    file.close() ;
+    QMessageBox::information(this, "File saved", "File Saved Successfully ");
+
+
+
+
+}
 
