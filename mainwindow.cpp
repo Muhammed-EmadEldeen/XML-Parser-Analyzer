@@ -17,6 +17,9 @@
 
 #include "XmlParser.cpp"
 
+#include "Tags_utilities.h"
+
+
 QString file ;
 
 
@@ -412,6 +415,12 @@ void MainWindow::on_XMLExpButton_clicked()
 
 
 
+
+}
+
+
+void MainWindow::on_Detectbtn_clicked()
+{
 
 }
 

@@ -71,6 +71,8 @@ private slots:
 
     void on_XMLExpButton_clicked();
 
+    void on_Detectbtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
