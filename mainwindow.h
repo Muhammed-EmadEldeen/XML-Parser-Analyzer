@@ -73,6 +73,10 @@ private slots:
 
     void on_Detectbtn_clicked();
 
+    void on_correctbtn_clicked();
+
+    void on_JsonExpButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;

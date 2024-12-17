@@ -39,7 +39,6 @@ public:
     QPushButton *XMLExpButton;
     QTextEdit *textEdit;
     QLabel *label;
-    QPushButton *ImportButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -77,11 +76,11 @@ public:
         Minifybtn->setGeometry(QRect(150, 410, 93, 29));
         JsonExpButton = new QPushButton(centralwidget);
         JsonExpButton->setObjectName("JsonExpButton");
-        JsonExpButton->setGeometry(QRect(310, 480, 111, 29));
+        JsonExpButton->setGeometry(QRect(250, 480, 111, 31));
         JsonExpButton->setStyleSheet(QString::fromUtf8(""));
         XMLExpButton = new QPushButton(centralwidget);
         XMLExpButton->setObjectName("XMLExpButton");
-        XMLExpButton->setGeometry(QRect(450, 480, 121, 29));
+        XMLExpButton->setGeometry(QRect(400, 480, 111, 31));
         XMLExpButton->setStyleSheet(QString::fromUtf8(""));
         textEdit = new QTextEdit(centralwidget);
         textEdit->setObjectName("textEdit");
@@ -89,10 +88,6 @@ public:
         label = new QLabel(centralwidget);
         label->setObjectName("label");
         label->setGeometry(QRect(650, 90, 141, 20));
-        ImportButton = new QPushButton(centralwidget);
-        ImportButton->setObjectName("ImportButton");
-        ImportButton->setGeometry(QRect(170, 480, 111, 29));
-        ImportButton->setStyleSheet(QString::fromUtf8(""));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -127,7 +122,6 @@ public:
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Enter Text", nullptr));
-        ImportButton->setText(QCoreApplication::translate("MainWindow", "Import", nullptr));
     } // retranslateUi
 
 };

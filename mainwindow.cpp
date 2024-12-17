@@ -236,17 +236,63 @@ void MainWindow::on_Detectbtn_clicked()
     }
 }
 
+*/
+
+
+
 
 void MainWindow::on_correctbtn_clicked()
 {
-    // XmlParser::correctXml() ;
-}
+
+    QString textContent = ui->textEdit->toPlainText();
+
+    if (!textContent.isEmpty()) {
+        QString inputFileName = QDir::currentPath() + "/temp_input.xml";
+        QString outputFileName = QFileDialog::getSaveFileName(this, "Save Corrected XML File", "", "XML Files (*.xml)");
+
+        if (inputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select a location to save the Decompressed XML file.");
+            return;
+        }
+
+        if (saveToFile(inputFileName, textContent)) {
+            qDebug() << "Content of textEdit saved to:" << inputFileName;
+
+            vector<string> xmlLines = readXmlFile(inputFileName.toStdString());
+            vector<string> correctedXml = correctXml(xmlLines) ;
+            writeXmlFile(outputFileName.toStdString(), correctedXml);
+            loadXMLAsPlainText(outputFileName);
+
+        } else {
+            QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
+        }
+
+    } else {
+        QString inputFileName = QFileDialog::getOpenFileName(this, "Open XML File", "", "XML Files (*.xml)");
+
+        if (inputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select an XML file to Decompressed.");
+            return;
+        }
+
+        QString outputFileName = QFileDialog::getSaveFileName(this, "Save Decompressed XML File", "", "XML Files (*.xml)");
+
+        if (outputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select a location to save the Decompressed XML file.");
+            return;
+        }
 
 
-void MainWindow::on_Compressbtn_clicked()
-{
-    //XmlParser::byte_pair_compress( &file) ;
+        vector<string> xmlLines = readXmlFile(inputFileName.toStdString());
+        vector<string> correctedXml = correctXml(xmlLines) ;
+        writeXmlFile(outputFileName.toStdString(), correctedXml);
+        loadXMLAsPlainText(outputFileName);
+        QMessageBox::information(this, "Correction Completed", "The XML file has been corrected and saved.");
+    }
+
 }
+
+/*
 
 
 void MainWindow::on_Decompressbtn_clicked()
@@ -293,11 +339,7 @@ void MainWindow::on_Decompressbtn_clicked()
 }
 
 
-
-void MainWindow::on_XMLExpButton_clicked()
-{
-
-}
+*/
 
 
 void MainWindow::on_JsonExpButton_clicked()
@@ -305,7 +347,7 @@ void MainWindow::on_JsonExpButton_clicked()
     // XmlParser::json();
 }
 
-*/
+
 
 void MainWindow::on_listView_indexesMoved(const QModelIndexList &indexes)
 {
@@ -350,19 +392,29 @@ void MainWindow::on_Compressbtn_clicked()
     QString textContent = ui->textEdit->toPlainText();
 
     if (!textContent.isEmpty()) {
-        QString inputFilePath = QDir::currentPath() + "/temp_input.xml";
-        QString outputFilePath = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
+        QString inputFileName = QDir::currentPath() + "/temp_input.xml";
+        QString outputFileName = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
 
-        if (outputFilePath.isEmpty()) {
+        if (outputFileName.isEmpty()) {
             QMessageBox::warning(this, "No File Selected", "Please select a location to save the minified XML file.");
             return;
         }
 
-        if (saveToFile(inputFilePath, textContent)) {
-            qDebug() << "Content of textEdit saved to:" << inputFilePath;
-           //////// XmlParser::compress(inputFilePath.toStdString(), outputFilePath.toStdString());
-            qDebug() << "XML minified. Output saved to:" << outputFilePath;
-            loadXMLAsPlainText(outputFilePath);
+        if (saveToFile(inputFileName, textContent)) {
+            qDebug() << "Content of textEdit saved to:" << inputFileName;
+
+
+            string content = read_file(inputFileName.toStdString());
+            string result = XmlParser::byte_pair_compress(content);
+
+            write_file(outputFileName.toStdString(), result);
+
+            for (const auto& pair : mapping) {
+                cout << pair.first << " -> " << pair.second << endl;
+            }
+
+            loadXMLAsPlainText(outputFileName);
+            QMessageBox::information(this, "Compression Complete", "The XML file has been Compressed and saved.");
         } else {
             QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
         }
@@ -382,9 +434,19 @@ void MainWindow::on_Compressbtn_clicked()
             return;
         }
 
-       ///////////// XmlParser::minifyXML(inputFileName.toStdString(), outputFileName.toStdString());
-        loadXMLAsPlainText(outputFileName);
-        QMessageBox::information(this, "Minify Complete", "The XML file has been minified and saved.");
+        string content = read_file(inputFileName.toStdString());
+        string result = XmlParser::byte_pair_compress(content);
+
+        write_file(outputFileName.toStdString(), result);
+
+            for (const auto& pair : mapping) {
+                cout << pair.first << " -> " << pair.second << endl;
+            }
+
+            loadXMLAsPlainText(outputFileName);
+            QMessageBox::information(this, "Compression Complete", "The XML file has been Compressed and saved.");
+
+
     }
 
 }
@@ -395,7 +457,7 @@ void MainWindow::on_XMLExpButton_clicked()
     QString outputFilePath = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
     qDebug() << "Failed to open file for writing:" << outputFilePath  ;
     if (outputFilePath.isEmpty()) {
-        QMessageBox::warning(this, "No File Selected", "Please select a location to save the minified XML file.");
+        QMessageBox::warning(this, "No File Selected", "Please select a location to save the XML file.");
         return;
     }
     QFile file (outputFilePath) ;

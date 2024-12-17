@@ -30,7 +30,7 @@ public:
   ~XmlParser();
 
   static vector<string> XML_error_detection();
-  static vector<string> correctXml(const vector<string>& xmlLines) ;
+
   static string byte_pair_compress(const string &input);
   static stack<pair<string, int>>
   readXmlTagsWithLineNumbers(const string &filename); ////////////////////////
@@ -42,7 +42,28 @@ public:
                           const string &outputFileName);
   static void minifyXML(const string &inputFileName,
                         const string &outputFileName);
+
+
+
+  struct tree_node {
+      string title;
+      string content = "";
+      vector <tree_node> children;
+
+  };
   static void json (string text);
+  static string transform_to_json(tree_node node);
+  static tree_node parse_xml(string xml);
+  static vector <string> split (string str,char splitter);
+
+
+
+  static vector<string> correctXml(const vector<string>& xmlLines) ;
+  static void parseXMLToString(const string &inputFilePath, const string &outputFilePath);
+  static vector<string> readXmlFile(const string& filename);
+  static void writeXmlFile(const string& filename, const vector<string>& xmlLines);
+
+
 
 
 };
@@ -146,7 +167,7 @@ inline void XmlParser::prettifyXML(const string& inputFileName,const string& out
         }
     }
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////Minify
 inline void XmlParser::minifyXML(const string& inputFileName, const string& outputFileName) {
     ifstream inputFile(inputFileName);
     if (!inputFile.is_open()) {
@@ -254,8 +275,6 @@ inline string replace_byte_pair(string &input, const string &pair,
 }
 
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 inline string XmlParser::byte_pair_compress(const string &input) {
     string compressed = input;
     // dynamic placeholders generation
@@ -307,7 +326,7 @@ inline string XmlParser::byte_pair_compress(const string &input) {
 
 
 
-////////////////////////////////////////////////////////////////DETECT ERROR
+////////////////////////////////////////////////////////////////////////////////////////////////////////////DETECT ERROR
 
 
 
@@ -354,7 +373,7 @@ inline vector<Error> XML_error_detection() {
         Tag currentTag = reversedTags.top(); // Get the struct (tag, line)
         string tag = currentTag.name;         // Extract the tag
         int line = currentTag.line;           // Extract the line number
-        reversedTags.pop();//////////////////////////////////////////////////////////////////////
+        reversedTags.pop();//////////////////////////
 
         if (!isClosingTag(tag)) {
             // Opening tag, push onto stack
