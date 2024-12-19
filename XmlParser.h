@@ -1,8 +1,8 @@
+#ifndef XMLPARSER
+#define XMLPARSER
 #include <stack>
 #include <string>
 #include <vector>
-
-using namespace std;
 
 class XmlParser {
 public:
@@ -20,4 +20,6 @@ public:
                           const string &outputFileName);
   static void minifyXML(const string &inputFileName,
                         const string &outputFileName);
+  static  void correct(string fileName, string outputFile);
 };
+#endif
