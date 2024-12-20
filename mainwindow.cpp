@@ -344,8 +344,52 @@ void MainWindow::on_Decompressbtn_clicked()
 
 void MainWindow::on_JsonExpButton_clicked()
 {
-    // XmlParser::json();
-}
+    QString textContent = ui->textEdit->toPlainText();
+
+    /*if (!textContent.isEmpty()) {
+        QString inputFileName = QDir::currentPath() + "/temp_input.xml";
+        QString outputFileName = QFileDialog::getSaveFileName(this, "Save Corrected XML File", "", "XML Files (*.xml)");
+
+        if (inputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select a location to save the Decompressed XML file.");
+            return;
+        }
+
+
+            vector<string> xmlLines = readXmlFile(inputFileName.toStdString());
+            vector<string> correctedXml = correctXml(xmlLines) ;
+            writeXmlFile(outputFileName.toStdString(), c        if (saveToFile(inputFileName, textContent)) {
+            qDebug() << "Content of textEdit saved to:" << inputFileName;
+orrectedXml);
+            loadXMLAsPlainText(outputFileName);
+
+        } else {
+            QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
+        }
+
+    } else {*/
+        QString inputFileName = QFileDialog::getOpenFileName(this, "Open XML File", "", "XML Files (*.xml)");
+
+        if (inputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select an XML file to Decompressed.");
+            return;
+        }
+
+        QString outputFileName = QFileDialog::getSaveFileName(this, "Save Decompressed XML File", "", "XML Files (*.json)");
+
+        if (outputFileName.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select a location to save the Decompressed XML file.");
+            return;
+        }
+
+
+        //XmlParser::prettifyXML(inputFileName.toStdString(), outputFileName.toStdString());
+        std::string inputFileNameStr = inputFileName.toStdString();
+        std::string outputFileNameStr = outputFileName.toStdString();
+        XmlParser::json(inputFileNameStr, outputFileNameStr);
+        loadXMLAsPlainText(outputFileName);
+        QMessageBox::information(this, "Correction Completed", "The XML file has been corrected and saved.");
+    }
 
 
 
