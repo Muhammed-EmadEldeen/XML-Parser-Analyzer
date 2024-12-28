@@ -14,4 +14,12 @@ public:
   vector<Post> getPostsByWord(string word);
   vector<Post> getPostsByTopic(string topic);
   vector<vector<int>> getFollowersMatrix();
+
+  //****Get the user vector functions****//
+  vector <User> getUsersFromXml  (const string& filePath);
+  string extractFromTag (const string & line , const string &tag);
+  User userAnalyze (ifstream& file );
+  Post analyzePost(ifstream& file);
+  //************************************************//
+
 };

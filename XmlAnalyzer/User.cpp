@@ -1,17 +1,20 @@
 #include <string>
 #include <vector>
 
+
 using namespace std;
 
 struct Post {
   string topic;
   string body;
+
 };
+
 
 class User {
 
 protected:
-  static int idCounter;
+  static int idCounter  ;
 
 private:
   int id;
@@ -19,19 +22,46 @@ private:
   vector<User> followers;
   vector<Post> posts;
 
+
 public:
+
+
   int getID() { return id; }
 
+  void setName (string name){
+  this->name = name ;}
+
+  void setId  (int id ){
+  this->id = id ;}
+
+  void setFollowers(vector<User> followers){
+  this-> followers = followers; }
+
+  void pushFollower(User follower){
+      this->followers.push_back( follower);
+  }
+  void pushPost(Post post){
+      this->posts.push_back(post);
+  }
+
+
+
   string getName() { return name; }
+
+  int getId (){return id; }
 
   vector<User> getFollowers() { return followers; }
 
   vector<Post> getPosts() { return posts; }
 
+
+  User (){};
+
   User(string name) {
     this->id = ++idCounter;
     this->name = name;
   }
+
 
   User(string name, vector<User> followers) {
     this->id = ++idCounter;
@@ -60,6 +90,10 @@ public:
     post.body = body;
     posts.push_back(post);
   }
+
+
+
+
 };
 
 int User::idCounter = 0;
