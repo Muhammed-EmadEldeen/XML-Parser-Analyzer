@@ -3,13 +3,13 @@
 #include <string>
 #include <algorithm>
 #include "UsersData.h"
+// #include "UsersVector.cpp"
 
 using namespace std;
 
 vector<Post> UsersData::getPostsByWord(string searchWord) {
     vector<Post> matchingPosts;
-    string filePath = "test.xml";
-    vector<User> users = getUsersFromXml(filePath);
+    User* usersposts = nullptr;
     for (User& user : users) {
         for (Post& post : user.getPosts()) {
             if (post.body.find(searchWord) != string::npos || post.topic.find(searchWord) != string::npos) {
@@ -24,7 +24,7 @@ vector<Post> UsersData::getPostsByWord(string searchWord) {
 // int main()
 // {  
 //     string Search_word = "This";
-//     UsersData user1;
+   
     
 //     vector<Post> wordResults = getPostsByWord(Search_word);
 //     for (Post& post : wordResults) {
