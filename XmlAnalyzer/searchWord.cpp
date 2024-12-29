@@ -2,12 +2,11 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-// #include "UsersVector.h"
 #include "UsersData.h"
 
 using namespace std;
 
-vector<Post> getPostsByWord(string searchWord) {
+vector<Post> UsersData::getPostsByWord(string searchWord) {
     vector<Post> matchingPosts;
     string filePath = "test.xml";
     vector<User> users = getUsersFromXml(filePath);
