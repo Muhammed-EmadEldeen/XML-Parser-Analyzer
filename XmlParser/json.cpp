@@ -151,10 +151,25 @@ string transform_to_json(tree_node node) {
   return "{}";
 }
 
-void XmlParser::json(string text) {
+void XmlParser::json(string input_file , string output_file) {
+
+  string text, line;
+  
+  ifstream file(input_file);
+
+  if (file.is_open()) {
+      while (getline(file, line)) {
+          text += line + "\n";
+      }
+      file.close();
+  } else {
+      cerr << "Unable to open file: " << input_file << endl;
+  }
+
   tree_node root = parse_xml(text);
   string json = transform_to_json(root);
-  ofstream json_file("output.json");
+  
+  ofstream json_file(output_file);
 
   if (json_file.is_open()) {
     json_file << json;
