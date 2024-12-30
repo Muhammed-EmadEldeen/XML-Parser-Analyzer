@@ -1,12 +1,17 @@
-// #include "UsersVector.h"
+
+#ifndef USERSDATA_H
+#define USERSDATA_H
+// #include "User.h"
 #include "User.h"
+
 using namespace std;
 
 class UsersData {
 private:
- vector<User> users;
+ 
 
 public:
+vector<User> users;
   void parseXmlFile(string filename);
   User getMostFollowedUser();
   User getMostFollowingUser();
@@ -23,3 +28,5 @@ public:
   //************************************************//
 
 };
+
+#endif
