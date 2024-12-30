@@ -1,3 +1,6 @@
+#ifndef USER_H
+#define USER_H
+
 #include <string>
 #include <vector>
 
@@ -62,4 +65,4 @@ public:
   }
 };
 
-int User::idCounter = 0;
+#endif
