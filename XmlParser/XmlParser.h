@@ -25,7 +25,7 @@ public:
   ~XmlParser();
 
   static vector<Error> XML_error_detection();
-  static string byte_pair_compress(const string &input);
+  static void byte_pair_compress(const string &inputfile, const string &outputfile);
   static stack<pair<string, int>>
   readXmlTagsWithLineNumbers(const string &filename);
   static void decompress();
