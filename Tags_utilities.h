@@ -43,8 +43,18 @@ struct Error {
 };
 
 
+struct tree_node {
+    string title;
+    string content = "";
+    vector<tree_node> children;
+};
+
+
 // Helper function to check if a tag is a closing tag
 bool isClosingTag(const string& tag);
 
 // Helper function to extract the name of a tag (without angle brackets)
 string getTagName(const string& tag);
+
+
+

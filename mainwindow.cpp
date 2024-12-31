@@ -385,12 +385,16 @@ orrectedXml);
 
 
         //XmlParser::prettifyXML(inputFileName.toStdString(), outputFileName.toStdString());
+
+
         std::string inputFileNameStr = inputFileName.toStdString();
         std::string outputFileNameStr = outputFileName.toStdString();
-        XmlParser::json(inputFileNameStr, outputFileNameStr);
+        //XmlParser::json(inputFileNameStr, outputFileNameStr);
+         XmlParser::json(inputFileNameStr , outputFileNameStr);
         loadXMLAsPlainText(outputFileName);
         QMessageBox::information(this, "Correction Completed", "The XML file has been corrected and saved.");
-    }
+
+ }
 
 
 
