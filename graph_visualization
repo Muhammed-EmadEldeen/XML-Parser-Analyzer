@@ -1,0 +1,39 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <map>
+#include <vector>
+#include <queue>
+#include <string>
+#include <set>
+#include <QApplication>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsLineItem>
+
+// Define Graph structure
+class Graph {
+private:
+    std::map<std::string, std::vector<std::string>> adjacency_list;
+
+public:
+    void addNode(const std::string &node) {
+        if (adjacency_list.find(node) == adjacency_list.end()) {
+            adjacency_list[node] = {};
+        }
+    }
+
+    void addEdge(const std::string &from_node, const std::string &to_node) {
+        addNode(from_node);
+        addNode(to_node);
+        adjacency_list[from_node].push_back(to_node);
+    }
+
+    std::vector<std::string> getNeighbors(const std::string &node) const {
+        auto it = adjacency_list.find(node);
+        if (it != adjacency_list.end()) {
+            return it->second;
+        }
+        return {};
+    }
