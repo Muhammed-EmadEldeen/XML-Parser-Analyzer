@@ -15,6 +15,7 @@
 #include <QTextStream>
 #include <QListWidgetItem>
 
+#include "Tags_utilities.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -84,5 +85,6 @@ private:
     QStandardItemModel *model_1;
     void loadXMLAsPlainText(const QString &filePath);
     void loadXMLFromText(const QString &text);
+    void displayVectorInListWidget(const vector <Error>& vec , QListWidget* listWidget);
 };
 #endif // MAINWINDOW_H

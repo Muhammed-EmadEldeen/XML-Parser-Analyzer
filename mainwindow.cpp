@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     , model_1(new QStandardItemModel(this))
 {
     ui->setupUi(this);
+    //connect(ui->Detectbtn , &QPushButton::clicked , this , &MainWindow::on_Detectbtn_clicked);
     ui->listView->setModel(model_1);
 }
 
@@ -498,7 +499,7 @@ void MainWindow::on_Compressbtn_clicked()
 
 void MainWindow::on_XMLExpButton_clicked()
 {
-    QString outputFilePath = QFileDialog::getSaveFileName(this, "Save Minified XML File", "", "XML Files (*.xml)");
+    QString outputFilePath = QFileDialog::getSaveFileName(this, "Save XML File", "", "XML Files (*.xml)");
     qDebug() << "Failed to open file for writing:" << outputFilePath  ;
     if (outputFilePath.isEmpty()) {
         QMessageBox::warning(this, "No File Selected", "Please select a location to save the XML file.");
@@ -528,5 +529,53 @@ void MainWindow::on_XMLExpButton_clicked()
 void MainWindow::on_Detectbtn_clicked()
 {
 
+    QString textContent = ui->textEdit->toPlainText();
+
+
+       if (!textContent.isEmpty()) {
+        QString inputFilePath = QDir::currentPath() + "/temp_input.xml";
+
+
+
+        if (saveToFile(inputFilePath, textContent)) {
+
+        vector <Error> errors = XmlParser::XML_error_detection(inputFilePath.toStdString());
+        displayVectorInListWidget(errors , ui->listWidget);
+
+        } else {
+            QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
+        }
+
+    } else {
+        QString inputFilePath = QFileDialog::getOpenFileName(this, "Open XML File", "", "XML Files (*.xml)");
+
+        if (inputFilePath.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select an XML file to minify.");
+            return;
+        }
+
+
+
+
+        vector <Error> errors = XmlParser::XML_error_detection(inputFilePath.toStdString());
+        displayVectorInListWidget(errors , ui->listWidget);
+
+
+
+
+
+    }
+
 }
+
+
+    void MainWindow::displayVectorInListWidget(const vector<Error>& errors , QListWidget* listWidget)
+    {
+
+        listWidget->clear() ;
+
+        for(const auto & item : errors){
+            listWidget->addItem(QString::fromStdString(item.toString())) ;
+        }
+    }
 

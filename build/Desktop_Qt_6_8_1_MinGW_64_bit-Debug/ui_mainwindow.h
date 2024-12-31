@@ -67,10 +67,10 @@ public:
         Decompressbtn->setGeometry(QRect(640, 410, 93, 29));
         listView = new QListView(centralwidget);
         listView->setObjectName("listView");
-        listView->setGeometry(QRect(160, 20, 431, 311));
+        listView->setGeometry(QRect(160, 20, 431, 291));
         listWidget = new QListWidget(centralwidget);
         listWidget->setObjectName("listWidget");
-        listWidget->setGeometry(QRect(160, 340, 431, 51));
+        listWidget->setGeometry(QRect(160, 330, 431, 61));
         Minifybtn = new QPushButton(centralwidget);
         Minifybtn->setObjectName("Minifybtn");
         Minifybtn->setGeometry(QRect(150, 410, 93, 29));

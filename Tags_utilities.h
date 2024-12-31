@@ -10,6 +10,9 @@ using namespace std;
 struct Tag {
     string name;
     int line;
+    Tag() {}
+    Tag(const string& tagName, int lineNumber) : name(tagName), line(lineNumber) {}
+
 };
 
 
@@ -19,6 +22,10 @@ struct Error {
     int tagLine;
 
     string errType;
+
+    string toString() const{
+        return "Line: " + to_string(tagLine) + " : Tag : "+ tagName + " : " + errType ;
+    }
     /*
 
                 * errType *
