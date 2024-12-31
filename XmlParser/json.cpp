@@ -63,9 +63,22 @@ tree_node parse_xml(string xml) {
   tree_node node;
   node.title = element;
 
-  if (xml_inside[0] != '<') {
-    node.content = xml_inside;
-    return node;
+  // if (xml_inside[0] != '<') {
+  //   node.content = xml_inside;
+  //   return node;
+  // }
+  int j =0;
+  while(true){
+    if(xml_inside[j] == ' ' || xml_inside[j] =='\n' || xml_inside[j] =='\r'){
+      j++;
+      continue;
+    }
+    if(xml_inside[j] !='<'){
+      node.content = xml_inside;
+      return node;
+    } else{
+      break;
+    }
   }
 
   // take the string divide into tree nodes
@@ -168,7 +181,6 @@ void XmlParser::json(string input_file , string output_file) {
 
   tree_node root = parse_xml(text);
   string json = transform_to_json(root);
-  
   ofstream json_file(output_file);
 
   if (json_file.is_open()) {
