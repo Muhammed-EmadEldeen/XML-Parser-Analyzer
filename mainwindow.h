@@ -78,6 +78,8 @@ private slots:
 
     void on_JsonExpButton_clicked();
 
+    void on_Decompressbtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;

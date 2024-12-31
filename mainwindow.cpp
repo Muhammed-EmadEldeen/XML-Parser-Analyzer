@@ -583,3 +583,55 @@ void MainWindow::on_Detectbtn_clicked()
         }
     }
 
+
+    void MainWindow::on_Decompressbtn_clicked()
+    {
+        QString textContent = ui->textEdit->toPlainText();
+
+        if (!textContent.isEmpty()) {
+            QString inputFilePath = QDir::currentPath() + "/temp_input.xml";
+            QString mappingFile = QFileDialog::getOpenFileName(this, "Open TXT File", "", "XML Files (*.txt)");
+            QString outputFilePath = QFileDialog::getSaveFileName(this, "Save XML File", "", "XML Files (*.xml)");
+
+            if (outputFilePath.isEmpty()) {
+                QMessageBox::warning(this, "No File Selected", "Please select a location to save the prettified XML file.");
+                return;
+            }
+
+            if (saveToFile(inputFilePath, textContent)) {
+                qDebug() << "Content of textEdit saved to:" << inputFilePath;
+                XmlParser::decompress(inputFilePath.toStdString() , mappingFile.toStdString() , outputFilePath.toStdString()) ;
+                qDebug() << "XML. Output saved to:" << outputFilePath;
+                loadXMLAsPlainText(outputFilePath);
+            } else {
+                QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
+            }
+
+        } else {
+            QString inputFilePath = QFileDialog::getOpenFileName(this, "Open XML File", "", "XML Files (*.xml)");
+            QString mappingFile = QFileDialog::getOpenFileName(this, "Open TXT File", "", "XML Files (*.txt)");
+
+            if (inputFilePath.isEmpty()) {
+                QMessageBox::warning(this, "No File Selected", "Please select an XML file.");
+                return;
+            }
+            if (mappingFile.isEmpty()) {
+                QMessageBox::warning(this, "No File Selected", "Please select an XML file.");
+                return;
+            }
+
+            QString outputFilePath = QFileDialog::getSaveFileName(this, "Save XML File", "", "XML Files (*.xml)");
+
+            if (outputFilePath.isEmpty()) {
+                QMessageBox::warning(this, "No File Selected", "Please select a location to save the XML file.");
+                return;
+            }
+
+
+            XmlParser::decompress(inputFilePath.toStdString() , mappingFile.toStdString() , outputFilePath.toStdString()) ;
+            loadXMLAsPlainText(outputFilePath);
+            QMessageBox::information(this, "Complete", "The XML file has been saved.");
+        }
+
+    }
+
