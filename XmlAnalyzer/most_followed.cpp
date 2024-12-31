@@ -1,5 +1,5 @@
 #include <iostream>
-#include "UsersData.cpp"
+#include "UsersData.h"
 
 using namespace std;
 
