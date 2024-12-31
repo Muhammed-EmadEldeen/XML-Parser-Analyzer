@@ -1,4 +1,4 @@
-#include "XmlParser.cpp"
+#include "XmlParser.h"
 #include <fstream>
 #include <iostream>
 #include <queue>

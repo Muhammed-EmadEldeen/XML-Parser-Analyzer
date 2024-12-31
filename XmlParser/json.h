@@ -18,3 +18,4 @@ struct tree_node {
 vector<string> split(string str, char splitter);
 tree_node parse_xml(string xml);
 string transform_to_json(tree_node node);
+void json(string input_file , string output_file)
