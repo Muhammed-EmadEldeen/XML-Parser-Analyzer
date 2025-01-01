@@ -1,3 +1,16 @@
+
+#ifndef USERSDATA_H
+#define USERSDATA_H
+#include "User.h"
+
+using namespace std;
+
+class UsersData {
+ 
+public:
+vector<User> users;
+
+
 #ifndef USERSDATA_H
 #define USERSDATA_H
 #include "User.h"
@@ -5,6 +18,7 @@
 class UsersData {
 
 public:
+
 
   vector<User> users;
 
@@ -15,9 +29,20 @@ public:
   vector<Post> getPostsByWord(string word);
   vector<Post> getPostsByTopic(string topic);
   vector<vector<int>> getFollowersMatrix();
+
+
+  //****Get the user vector functions****//
+  vector <User> getUsersFromXml  (string filePath);
+  string extractFromTag (const string & line , const string &tag);
+  User userAnalyze (ifstream& file );
+  Post analyzePost(ifstream& file);
+  //************************************************//
+
+
   vector<string> findMutualFollowers(vector<string> userIds);
   //****Get the user vector functions****//
   void getUsersFromXml (const string& filePath);
+
 };
 
 #endif

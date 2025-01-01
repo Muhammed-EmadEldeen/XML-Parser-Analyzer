@@ -1,10 +1,14 @@
+
 #ifndef USER_H
 #define USER_H
+
 
 #include <string>
 #include <vector>
 
 using namespace std;
+
+int User::idCounter = 0;
 
 struct Post {
   string topic;
@@ -83,3 +87,4 @@ public:
 };
 
 #endif
+
