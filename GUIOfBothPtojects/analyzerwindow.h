@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include <QFileDialog>
+
 namespace Ui {
 class AnalyzerWindow;
 }
@@ -14,6 +16,15 @@ class AnalyzerWindow : public QDialog
 public:
     explicit AnalyzerWindow(QWidget *parent = nullptr);
     ~AnalyzerWindow();
+
+private slots:
+    void on_dirBtn_clicked();
+
+    void on_parseXmlFileBtn_clicked();
+
+    void on_getMostFollowedUserBtn_clicked();
+
+    void on_getMostFollowingUserBtn_clicked();
 
 private:
     Ui::AnalyzerWindow *ui;

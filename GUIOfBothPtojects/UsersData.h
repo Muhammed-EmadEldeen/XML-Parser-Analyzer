@@ -1,12 +1,15 @@
 #ifndef USERSDATA_H
 #define USERSDATA_H
 #include "User.h"
+#include <string>
 
 class UsersData {
 private:
   vector<User> users;
 
+
 public:
+  /*string filePath;*/
   void parseXmlFile(string filename);
   User getMostFollowedUser();
   User getMostFollowingUser();

@@ -31,6 +31,9 @@ public:
 
   vector<Post> getPosts() { return posts; }
 
+  User() {
+  }
+
   User(string name) {
     this->id = ++idCounter;
     this->name = name;
