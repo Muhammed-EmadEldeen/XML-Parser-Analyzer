@@ -181,6 +181,7 @@ void XmlParser::json(string input_file , string output_file) {
 
   tree_node root = parse_xml(text);
   string json = transform_to_json(root);
+
   ofstream json_file(output_file);
 
   if (json_file.is_open()) {
