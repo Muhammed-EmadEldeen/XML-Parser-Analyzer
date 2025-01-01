@@ -71,8 +71,8 @@ string replace_byte_pair(string &input, const string &pair,
   return input;
 }
 
-string XmlParser::byte_pair_compress(const string &input) {
-  string compressed = input;
+void XmlParser::byte_pair_compress(const string &input_file, const string &output_file) {
+  string compressed = read_file(input_file);
   // dynamic placeholders generation
   vector<string> placeholders;
   for (char c = 33; c <= 126; ++c) {
@@ -106,5 +106,9 @@ string XmlParser::byte_pair_compress(const string &input) {
     // replace the most repeated pair with placeholders
     compressed = replace_byte_pair(compressed, most_frequent_pair, placeholder);
   }
-  return compressed;
+  write_file(output_file, compressed);
+  cout << "File compressed successfully to a file named " << output_file << endl;
+  for (const auto &pair : mapping) {
+    cout << pair.first << " -> " << pair.second << endl;
+  }
 }
