@@ -1,6 +1,6 @@
-#include "User.cpp"
-
-using namespace std;
+#ifndef USERSDATA_H
+#define USERSDATA_H
+#include "User.h"
 
 class UsersData {
 private:
@@ -23,3 +23,5 @@ public:
   //************************************************//
 
 };
+
+#endif
