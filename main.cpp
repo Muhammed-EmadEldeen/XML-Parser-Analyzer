@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
             fix = true;
         }
       }
-      XmlParser::XML_error_detection();
+      XmlParser::XML_error_detection(input_file);
       if (fix) {
         XmlParser::correct(input_file, output_file);
       }
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
       XmlParser::prettifyXML(input_file, output_file);
     } else if (!strcmp("json", argv[1])) {
       read_input_output(argc, argv, input_file, output_file);
-      XmlParser::json(input_file);
+      XmlParser::json(input_file, output_file);
     } else if (!strcmp("mini", argv[1])) {
       read_input_output(argc, argv, input_file, output_file);
       XmlParser::minifyXML(input_file, output_file);
