@@ -15,9 +15,9 @@ public:
   vector<Post> getPostsByWord(string word);
   vector<Post> getPostsByTopic(string topic);
   vector<vector<int>> getFollowersMatrix();
+  vector<string> findMutualFollowers(vector<string> userIds);
   //****Get the user vector functions****//
   void getUsersFromXml (const string& filePath);
-
 };
 
 #endif
