@@ -32,9 +32,8 @@ struct Tag {
 class XmlParser {
 public:
   ~XmlParser();
-
+  static void byte_pair_compress(const string &inputfile, const string &outputfile);
   static vector<Error> XML_error_detection(const string &filename);
-  static string byte_pair_compress(const string &input);
   static stack<Tag> readXmlTagsWithLineNumbers(const string &filename);
   static void decompress();
   static void json(string input_file, string output_file);
