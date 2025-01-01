@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
       if (!strcmp("verify", argv[i])) {
         bool fix = false;
         if (argc > 2) {
-          for (int i = 2; i < argc; i++) {
+          for (int i = 0; i < argc; i++) {
             if (strcmp(argv[i], "-f") == 0)
               fix = true;
           }
