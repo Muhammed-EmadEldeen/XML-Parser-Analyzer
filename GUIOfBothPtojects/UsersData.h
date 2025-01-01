@@ -5,18 +5,30 @@
 
 class UsersData {
 private:
-  vector<User> users;
 
 
 public:
+  vector<User> users;
+
+
   /*string filePath;*/
-  void parseXmlFile(string filename);
+  //void parseXmlFile(string filename);
   User getMostFollowedUser();
   User getMostFollowingUser();
-  vector<User> mutualFollowers(User user1, User user2);
+  vector<string> findMutualFollowers(vector<string> userIds);
+  //vector<User> mutualFollowers(User user1, User user2);
   vector<Post> getPostsByWord(string word);
   vector<Post> getPostsByTopic(string topic);
   vector<vector<int>> getFollowersMatrix();
-};
+  //****Get the user vector functions****//
+  void getUsersFromXml (const string& filePath);
+
+  };
 
 #endif
+
+//
+
+
+
+

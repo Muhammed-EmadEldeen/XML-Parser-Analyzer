@@ -18,7 +18,7 @@
 //#include "XmlParser/XmlParser.h"
 
 //#include "XmlParser/Tags_utilities.h"
-
+//displayVectorInListWidget
 
 QString file ;
 
