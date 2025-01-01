@@ -3,4 +3,3 @@
 
 User UsersData::getMostFollowingUser() { return User("hi"); }
 User UsersData::getMostFollowedUser() { return User("hi"); }
-void XmlParser::decompress() {};
