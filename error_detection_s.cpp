@@ -5,27 +5,15 @@
 
 
 #include "Tags_utilities.h"
-#include "XmlParser.cpp"
+#include "XmlParser.h"
 
 using namespace std;
 
 
 
-
-// *******Function to simulate reading an XML file as a stack of tags with line numbers****************
-
-
-
-stack<Tag> readxml() {
-    stack<Tag> file;
-
-    return file;
-}
-
-
 // Function to detect XML errors
-vector<Error> XmlParser::XML_error_detection() {
-    stack<Tag> tags = readxml(); // Input stack with line numbers
+vector<Error> XmlParser::XML_error_detection(const string &filename) {
+    stack<Tag> tags = readXmlTagsWithLineNumbers(filename); // Input stack with line numbers
     stack<Tag> reversedTags;     // To reverse the input stack
     vector<Error> errors;       // To store error messages
     stack<Tag> openTagsStack;    // To track unmatched opening tags
@@ -62,7 +50,8 @@ vector<Error> XmlParser::XML_error_detection() {
                 Error currentError;
                 currentError.tagName = tag;
                 currentError.tagLine = line;
-                currentError.errType = "Closing tag has no matching opening tag.";
+                currentError.errType = UnOpened ; //
+                // currentError.errType = "Closing tag has no matching opening tag.";
                 errors.push_back(currentError);
 
                 //errors.push_back("Error: Closing tag " + tag + " on line " + to_string(line) + " has no matching opening tag.");
@@ -81,7 +70,9 @@ vector<Error> XmlParser::XML_error_detection() {
                     Error currentError;
                     currentError.tagName = topTagStr;
                     currentError.tagLine = topLine;
-                    currentError.errType = "Opening tag unclosed properly.";
+                    currentError.errType = UnClosed;//
+                    // currentError.errType = "Opening tag unclosed properly.";
+
                     errors.push_back(currentError);
                     //errors.push_back("Error: the opening tag " + topTagStr + " on line " + to_string(topLine) + " unclosed properly.");
                     openTagsStack.pop(); // Remove incorrect opening tag
@@ -100,7 +91,9 @@ vector<Error> XmlParser::XML_error_detection() {
                                 Error currentError;
                                 currentError.tagName = tag;
                                 currentError.tagLine = line;
-                                currentError.errType = "Closed tag unopened properly." ;
+                                currentError.errType = UnOpened ;//
+                                // currentError.errType = "Closed tag unopened properly." ;
+
                                 errors.push_back(currentError);
                                 //errors.push_back("Error: the closed tag " + tag + " on line " + to_string(line) + " unopened properly.");
                                 openTagsStack.push(tempTag);
@@ -137,7 +130,9 @@ vector<Error> XmlParser::XML_error_detection() {
         Error currentError;
         currentError.tagName = topTagStr;
         currentError.tagLine = topLine;
-        currentError.errType = "Opening tag has no matching closing tag.";
+        currentError.errType = UnClosed ;//
+        // currentError.errType = "Opening tag has no matching closing tag.";
+
         errors.push_back(currentError);
         //errors.push_back("Error: Opening tag " + topTagStr + " on line " + to_string(topLine) + " has no matching closing tag.");
         openTagsStack.pop();

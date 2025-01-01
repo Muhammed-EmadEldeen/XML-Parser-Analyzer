@@ -1,6 +1,7 @@
 #include <stack>
 #include <string>
 #include <vector>
+#include "XmlParser.h"
 
 using namespace std;
 
