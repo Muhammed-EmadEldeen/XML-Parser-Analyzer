@@ -8,6 +8,7 @@ using namespace std;
 
 enum ErrorType { UnClosed, UnOpened };
 
+/*
 struct Error {
   string tag;
   int line;
@@ -19,7 +20,8 @@ struct Error {
     error = e;
   }
 };
-
+*/
+/*
 class XmlParser {
 public:
   ~XmlParser();
@@ -36,4 +38,5 @@ public:
                         const string &outputFileName);
   static void correct(string fileName, string outputFile);
 };
+*/
 #endif
