@@ -9,20 +9,22 @@ using namespace std;
 enum ErrorType { UnClosed, UnOpened };
 
 struct Error {
-  string tag;
-  int line;
-  ErrorType error;
+  string tagName;
+  int tagLine;
+  ErrorType errType;
+  Error();
 
   Error(string t, int l, ErrorType e) {
-    tag = t;
-    line = l;
-    error = e;
+    tagName = t;
+    tagLine = l;
+    errType = e;
   }
 };
 
 struct Tag {
   string name;
   int line; // Line number of the tage
+  Tag();
   Tag(const string &tagName, int lineNumber)
       : name(tagName), line(lineNumber) {}
 };
@@ -31,7 +33,7 @@ class XmlParser {
 public:
   ~XmlParser();
 
-  static vector<Error> XML_error_detection();
+  static vector<Error> XML_error_detection(const string &filename);
   static string byte_pair_compress(const string &input);
   static stack<Tag> readXmlTagsWithLineNumbers(const string &filename);
   static void decompress();
@@ -42,4 +44,5 @@ public:
                         const string &outputFileName);
   static void correct(string fileName, string outputFile);
 };
+
 #endif
