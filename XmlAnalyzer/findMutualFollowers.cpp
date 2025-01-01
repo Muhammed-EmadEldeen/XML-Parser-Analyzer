@@ -5,6 +5,8 @@
 #include <set>
 #include <fstream>
 #include <algorithm>  
+#include "User.h"
+#include "UsersData.h"
 using namespace std;
     vector<string> findMutualFollowers(vector<string> userIds) {
         if (userIds.empty()) {
