@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void correct(string fileName, string outputFile) {
+void XmlParser::correct(string fileName, string outputFile) {
   vector<Error> errors = XmlParser::XML_error_detection(fileName);
 
   vector<string> correctedXml;

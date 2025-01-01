@@ -70,10 +70,10 @@ int main(int argc, char *argv[]) {
       read_input_output(argc, argv, input_file, output_file);
     } else if (!strcmp("compress", argv[1])) {
       read_input_output(argc, argv, input_file, output_file);
-      XmlParser::byte_pair_compress(input_file);
+      XmlParser::byte_pair_compress(input_file, output_file);
     } else if (!strcmp("decompress", argv[1])) {
       read_input_output(argc, argv, input_file, output_file);
-      XmlParser::decompress();
+      XmlParser::decompress(input_file, "mapping.txt", output_file);
     } else if (!strcmp("format", argv[1])) {
       read_input_output(argc, argv, input_file, output_file);
       XmlParser::prettifyXML(input_file, output_file);
