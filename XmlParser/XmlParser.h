@@ -28,7 +28,8 @@ public:
   static string byte_pair_compress(const string &input);
   static stack<pair<string, int>>
   readXmlTagsWithLineNumbers(const string &filename);
-  static void decompress();
+  static void decompress(const string &compressedFile,
+                         const string &mappingFile, const string &outputFile);
   static void json(string filename);
   static void prettifyXML(const string &inputFileName,
                           const string &outputFileName);
