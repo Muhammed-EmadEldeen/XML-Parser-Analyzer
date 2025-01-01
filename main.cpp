@@ -3,6 +3,12 @@
 #include <iostream>
 #include <string.h>
 #include <system_error>
+#include <QApplication>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include "Graph.h"
+#include "GraphVisualizer.h"
+
 
 using namespace std;
 
@@ -45,6 +51,23 @@ int read_input(int argc, char *argv[], string &input_file) {
     return 1;
   }
   return 0;
+}
+
+void visualizeGraph(const string &input_file) {
+    // Parse the XML file into a Graph
+    Graph graph = XmlParser::parseXMLToGraph(input_file);
+
+    // Create a Qt application for visualization
+    int argc = 0;
+    char *argv[] = {};
+    QApplication app(argc, argv);
+
+    // Visualize the graph
+    GraphVisualizer visualizer;
+    visualizer.visualize(graph);
+
+    // Execute the Qt application
+    app.exec();
 }
 
 int main(int argc, char *argv[]) {
@@ -94,6 +117,10 @@ int main(int argc, char *argv[]) {
       usersData.parseXmlFile(input_file);
       usersData.getMostFollowedUser();
     }
+      else if (!strcmp("graph_visualize", argv[1])) {
+            read_input(argc, argv, input_file);
+            visualizeGraph(input_file); // Call the graph visualization function
+      }
 
     else {
       std::cout << "Invalid function" << std::endl;
@@ -103,3 +130,10 @@ int main(int argc, char *argv[]) {
 
   return 0;
 }
+
+
+
+
+    return 0;
+}
+
