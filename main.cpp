@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
             fix = true;
         }
       }
-      XmlParser::XML_error_detection();
+      XmlParser::XML_error_detection(input_file);
       if (fix) {
         XmlParser::correct(input_file, output_file);
       }
