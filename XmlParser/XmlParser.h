@@ -12,7 +12,7 @@ struct Error {
   string tagName;
   int tagLine;
   ErrorType errType;
-  Error();
+  Error() : tagName(""), tagLine(0), errType(UnClosed) {}
 
   Error(string t, int l, ErrorType e) {
     tagName = t;
@@ -24,7 +24,7 @@ struct Error {
 struct Tag {
   string name;
   int line; // Line number of the tage
-  Tag();
+  Tag() : name(""), line(0) {}
   Tag(const string &tagName, int lineNumber)
       : name(tagName), line(lineNumber) {}
 };
@@ -32,11 +32,12 @@ struct Tag {
 class XmlParser {
 public:
   ~XmlParser();
-
+  static void byte_pair_compress(const string &inputfile,
+                                 const string &outputfile);
   static vector<Error> XML_error_detection(const string &filename);
-  static string byte_pair_compress(const string &input);
   static stack<Tag> readXmlTagsWithLineNumbers(const string &filename);
-  static void decompress();
+  static void decompress(const string &compressedFile,
+                         const string &mappingFile, const string &outputFile);
   static void json(string input_file, string output_file);
   static void prettifyXML(const string &inputFileName,
                           const string &outputFileName);

@@ -1,31 +1,55 @@
-
+# Compiler and flags
 CXX = g++
-CXXFLAGS = -g -std=c++17 -Wall -IXmlParser -IXmlAnalyzer
+CXXFLAGS = -std=c++17 -g -Wall -Wextra -O2
 
-TARGET = xml_editor
+# Directories
+SRC_DIR = .
+XML_ANALYZER_DIR = XmlAnalyzer
+XML_PARSER_DIR = XmlParser
+XML_ANALYZER_TEST_DIR = $(XML_ANALYZER_DIR)/Testing
 
-SRC = main.cpp \
-	  temp.cpp \
-      XmlParser/compression.cpp \
-      XmlParser/error_correction.cpp \
-      XmlParser/help_func.cpp \
-      XmlParser/json.cpp \
-      XmlParser/prettify_minify.cpp \
-      XmlParser/Tags_utilities_s.cpp
+# Source files
+SRC = \
+	$(SRC_DIR)/main.cpp \
+	$(XML_PARSER_DIR)/compression.cpp \
+	$(XML_PARSER_DIR)/decompress.cpp \
+	$(XML_PARSER_DIR)/error_correction.cpp \
+	$(XML_PARSER_DIR)/error_detection_s.cpp \
+	$(XML_PARSER_DIR)/help_func.cpp \
+	$(XML_PARSER_DIR)/json.cpp \
+	$(XML_PARSER_DIR)/prettify_minify.cpp \
+	$(XML_PARSER_DIR)/readXmlTags.cpp \
+	$(XML_PARSER_DIR)/Tags_utilities.cpp \
+	$(XML_PARSER_DIR)/XmlParser.cpp \
 
-OBJS = $(SRC:.cpp=.o)
+	# $(XML_ANALYZER_DIR)/getMostFollowingUser.cpp \
+	# $(XML_ANALYZER_DIR)/graph.cpp \
+	# $(XML_ANALYZER_DIR)/most_followed.cpp \
+# Headers
+HEADERS = \
+	$(XML_ANALYZER_DIR)/User.h \
+	$(XML_ANALYZER_DIR)/UsersData.h \
+	$(XML_PARSER_DIR)/help_func.h \
+	$(XML_PARSER_DIR)/json.h \
+	$(XML_PARSER_DIR)/Tags_utilities.h \
+	$(XML_PARSER_DIR)/XmlParser.h \
 
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+# Object files
+OBJ = $(SRC:.cpp=.o)
 
+# Output executable
+TARGET =  xml_parser
 
-# Compile object files
-%.o: %.cpp
+# Rules
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+%.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean up generated files
 clean:
-	rm -f $(TARGET) $(OBJS)
-
-# Phony targets (non-file targets)
-.PHONY: clean
+	rm -f $(OBJ) $(TARGET)
