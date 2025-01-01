@@ -8,7 +8,7 @@
 #include "User.h"
 #include "UsersData.h"
 using namespace std;
-    vector<string> findMutualFollowers(vector<string> userIds) {
+    vector<string> UsersData::findMutualFollowers(vector<string> userIds) {
         if (userIds.empty()) {
             return vector<string>();
         }       
