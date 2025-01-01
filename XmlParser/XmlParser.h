@@ -20,14 +20,20 @@ struct Error {
   }
 };
 
+struct Tag {
+  string name;
+  int line; // Line number of the tage
+  Tag(const string &tagName, int lineNumber)
+      : name(tagName), line(lineNumber) {}
+};
+
 class XmlParser {
 public:
   ~XmlParser();
 
   static vector<Error> XML_error_detection();
   static string byte_pair_compress(const string &input);
-  static stack<pair<string, int>>
-  readXmlTagsWithLineNumbers(const string &filename);
+  static stack<Tag> readXmlTagsWithLineNumbers(const string &filename);
   static void decompress();
   static void json(string filename);
   static void prettifyXML(const string &inputFileName,
