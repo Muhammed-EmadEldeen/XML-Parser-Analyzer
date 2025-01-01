@@ -1,19 +1,16 @@
-<<<<<<< HEAD
 
 #ifndef USERSDATA_H
 #define USERSDATA_H
-// #include "User.h"
 #include "User.h"
 
 using namespace std;
 
 class UsersData {
-private:
  
-
 public:
 vector<User> users;
-=======
+
+
 #ifndef USERSDATA_H
 #define USERSDATA_H
 #include "User.h"
@@ -23,7 +20,7 @@ private:
   vector<User> users;
 
 public:
->>>>>>> main
+
   void parseXmlFile(string filename);
   User getMostFollowedUser();
   User getMostFollowingUser();
@@ -31,7 +28,6 @@ public:
   vector<Post> getPostsByWord(string word);
   vector<Post> getPostsByTopic(string topic);
   vector<vector<int>> getFollowersMatrix();
-<<<<<<< HEAD
 
   //****Get the user vector functions****//
   vector <User> getUsersFromXml  (string filePath);
@@ -40,8 +36,7 @@ public:
   Post analyzePost(ifstream& file);
   //************************************************//
 
-=======
->>>>>>> main
+
 };
 
 #endif
