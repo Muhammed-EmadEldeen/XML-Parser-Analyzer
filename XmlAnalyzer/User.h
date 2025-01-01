@@ -42,6 +42,14 @@ public:
   void pushPost(Post post){
       this->posts.push_back(post);
   }
+  // Method to get follower IDs as a vector of strings
+    vector<string> getFollowerIDs() {
+        vector<string> followerIDs;
+        for (const User& follower : followers) {
+            followerIDs.push_back(to_string(follower.getID()));
+        }
+        return followerIDs;
+    }
 
   vector<User> getFollowers() { return followers; }
 
