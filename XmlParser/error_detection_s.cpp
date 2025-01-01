@@ -46,6 +46,9 @@ vector<Error> XmlParser::XML_error_detection(const string &filename) {
         currentError.tagName = tag;
         currentError.tagLine = line;
         currentError.errType = UnOpened; //
+                                         //
+        cout << "There is an error in line: " << topLine
+             << " of type unopedned tag." << endl;
         // currentError.errType = "Closing tag has no matching opening tag.";
         errors.push_back(currentError);
 
@@ -122,6 +125,8 @@ vector<Error> XmlParser::XML_error_detection(const string &filename) {
     currentError.tagName = topTagStr;
     currentError.tagLine = topLine;
     currentError.errType = UnClosed; //
+    cout << "There is an error in line: " << topLine << " of type unclosed tag."
+         << endl;
     // currentError.errType = "Opening tag has no matching closing tag.";
 
     errors.push_back(currentError);
