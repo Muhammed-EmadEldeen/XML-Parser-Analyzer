@@ -1,5 +1,5 @@
 #include "XmlParser.h"
-#include "help_func.cpp"
+#include "help_func.h"
 #include <iostream>
 #include <stack>
 #include <string>

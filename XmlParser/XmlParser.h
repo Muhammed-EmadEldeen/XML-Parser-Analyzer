@@ -29,7 +29,7 @@ public:
   static stack<pair<string, int>>
   readXmlTagsWithLineNumbers(const string &filename);
   static void decompress();
-  static void json(string filename);
+  static void json(string input_file, string output_file);
   static void prettifyXML(const string &inputFileName,
                           const string &outputFileName);
   static void minifyXML(const string &inputFileName,
