@@ -5,14 +5,15 @@
 #include <vector>
 
 #include "User.h"
-
+#include "UsersData.h"
 
 //****** This file contains 4 functions; "getUsersFromXml" is the main and you can take the output vector from it ******//
 
 
 
-vector <User> getUsersFromXml  (const string& filePath);
 string extractFromTag (const string & line , const string &tag);
+
+
 User userAnalyze (ifstream& file );
 Post analyzePost(ifstream& file);
 
@@ -35,7 +36,6 @@ return "";
 
 
 User userAnalyze (ifstream& file ){
-
 string line ;
 
 User user ;
@@ -69,7 +69,7 @@ while(getline(file ,line) ){
                     user.pushFollower(follower) ;*/
                     bool repeatedId = false ;
                     for(int i=0 ; i < (int)user.getFollowers().size() ; i++){
-                        if (user.getFollowers()[i].getId() == idStringToInt)
+                        if (user.getFollowers()[i].getID() == idStringToInt)
                          {
                              repeatedId = true ;
                              break;
@@ -99,6 +99,7 @@ return user ;
 
 
 Post analyzePost(ifstream& file){
+
     string line ;
     string postBody = "";
     string topic = "";
@@ -146,28 +147,29 @@ return Post{topic ,postBody} ;
 }
 
 //////////////////////////////////////////////////////////////Main Function
-vector <User> getUsersFromXml  (const string& filePath){
+void UsersData::getUsersFromXml  (const string& filePath){
 
 ifstream file (filePath ) ;
 if(! file.is_open()){
     cout<<"error opening the file" ;
-    return {};
+    return ;
     }
-    vector<User> users ;
+
     string line ;
     while (getline(file , line)) {
 
         if(line.find("<user>") != string::npos ) ///if a user is detected
              {
-            users.push_back(userAnalyze(file));
+            this->users.push_back(userAnalyze(file));
         }
 
 
     }
     file.close();
-    return users ;
+    return  ;
 
 }
+
 
 
 

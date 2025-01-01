@@ -1,24 +1,20 @@
-
 #ifndef USER_H
 #define USER_H
 
 #include <string>
 #include <vector>
 
-
 using namespace std;
 
 struct Post {
   string topic;
   string body;
-
 };
-
 
 class User {
 
 protected:
-  static int idCounter  ;
+  static int idCounter;
 
 private:
   int id;
@@ -26,11 +22,10 @@ private:
   vector<User> followers;
   vector<Post> posts;
 
-
 public:
-
-
   int getID() { return id; }
+
+  string getName() { return name; }
 
   void setName (string name){
   this->name = name ;}
@@ -48,24 +43,15 @@ public:
       this->posts.push_back(post);
   }
 
-
-
-  string getName() { return name; }
-
-  int getId (){return id; }
-
   vector<User> getFollowers() { return followers; }
 
   vector<Post> getPosts() { return posts; }
-
-
   User (){};
 
   User(string name) {
     this->id = ++idCounter;
     this->name = name;
   }
-
 
   User(string name, vector<User> followers) {
     this->id = ++idCounter;
@@ -94,10 +80,6 @@ public:
     post.body = body;
     posts.push_back(post);
   }
-
-
-
-
 };
 
 #endif
