@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="Prettifybtn">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>10</x>
      <y>370</y>
      <width>83</width>
      <height>29</height>
@@ -29,7 +29,7 @@
   <widget class="QPushButton" name="Minifybtn">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>110</x>
      <y>370</y>
      <width>83</width>
      <height>29</height>
@@ -42,9 +42,9 @@
   <widget class="QPushButton" name="Decompressbtn">
    <property name="geometry">
     <rect>
-     <x>550</x>
+     <x>510</x>
      <y>370</y>
-     <width>83</width>
+     <width>91</width>
      <height>29</height>
     </rect>
    </property>
@@ -55,7 +55,7 @@
   <widget class="QPushButton" name="correctbtn">
    <property name="geometry">
     <rect>
-     <x>340</x>
+     <x>310</x>
      <y>370</y>
      <width>83</width>
      <height>29</height>
@@ -68,7 +68,7 @@
   <widget class="QPushButton" name="Detectbtn">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>210</x>
      <y>370</y>
      <width>83</width>
      <height>29</height>
@@ -81,9 +81,9 @@
   <widget class="QPushButton" name="JsonExpButton">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>180</x>
      <y>420</y>
-     <width>83</width>
+     <width>111</width>
      <height>29</height>
     </rect>
    </property>
@@ -94,7 +94,7 @@
   <widget class="QPushButton" name="Compressbtn">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>410</x>
      <y>370</y>
      <width>83</width>
      <height>29</height>
@@ -107,9 +107,9 @@
   <widget class="QPushButton" name="XMLExpButton">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>430</y>
-     <width>83</width>
+     <x>310</x>
+     <y>420</y>
+     <width>111</width>
      <height>29</height>
     </rect>
    </property>
@@ -120,39 +120,39 @@
   <widget class="QListView" name="listView">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>95</x>
      <y>60</y>
-     <width>256</width>
-     <height>192</height>
+     <width>291</width>
+     <height>191</height>
     </rect>
    </property>
   </widget>
   <widget class="QListWidget" name="listWidget">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>95</x>
      <y>280</y>
-     <width>256</width>
-     <height>41</height>
+     <width>291</width>
+     <height>71</height>
     </rect>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>190</y>
-     <width>104</width>
-     <height>85</height>
+     <x>440</x>
+     <y>60</y>
+     <width>121</width>
+     <height>161</height>
     </rect>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>150</y>
-     <width>63</width>
+     <x>470</x>
+     <y>40</y>
+     <width>71</width>
      <height>20</height>
     </rect>
    </property>
