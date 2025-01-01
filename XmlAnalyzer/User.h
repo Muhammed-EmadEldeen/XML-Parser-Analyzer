@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 #include <string>
 #include <vector>
-#include "User.cpp"
 
 using namespace std;
 
 
-struct Post ;
-class User ;
+<<<<<<<< HEAD:XmlAnalyzer/User.cpp
+int User::idCounter = 0;
+========
+#endif
+>>>>>>>> main:XmlAnalyzer/User.h
