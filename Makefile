@@ -1,6 +1,6 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -O2
+CXXFLAGS = -std=c++17 -g -Wall -Wextra -O2
 
 # Directories
 SRC_DIR = .
@@ -11,9 +11,6 @@ XML_ANALYZER_TEST_DIR = $(XML_ANALYZER_DIR)/Testing
 # Source files
 SRC = \
 	$(SRC_DIR)/main.cpp \
-	$(XML_ANALYZER_DIR)/getMostFollowingUser.cpp \
-	$(XML_ANALYZER_DIR)/graph.cpp \
-	$(XML_ANALYZER_DIR)/most_followed.cpp \
 	$(XML_PARSER_DIR)/compression.cpp \
 	$(XML_PARSER_DIR)/decompress.cpp \
 	$(XML_PARSER_DIR)/error_correction.cpp \
@@ -23,9 +20,11 @@ SRC = \
 	$(XML_PARSER_DIR)/prettify_minify.cpp \
 	$(XML_PARSER_DIR)/readXmlTags.cpp \
 	$(XML_PARSER_DIR)/Tags_utilities.cpp \
-	$(XML_PARSER_DIR)/Tags_utilities_s.cpp \
 	$(XML_PARSER_DIR)/XmlParser.cpp \
 
+	# $(XML_ANALYZER_DIR)/getMostFollowingUser.cpp \
+	# $(XML_ANALYZER_DIR)/graph.cpp \
+	# $(XML_ANALYZER_DIR)/most_followed.cpp \
 # Headers
 HEADERS = \
 	$(XML_ANALYZER_DIR)/User.h \
@@ -39,7 +38,7 @@ HEADERS = \
 OBJ = $(SRC:.cpp=.o)
 
 # Output executable
-TARGET = app
+TARGET =  xml_parser
 
 # Rules
 .PHONY: all clean

@@ -1,5 +1,6 @@
 #include "XmlParser.h"
 #include <fstream>
+#include <iostream>
 #include <regex>
 #include <stack>
 #include <stdexcept>
@@ -9,6 +10,7 @@ using namespace std;
 
 stack<Tag> XmlParser::readXmlTagsWithLineNumbers(const string &filename) {
   stack<Tag> resultStack;
+  /* cout << "Reading file: " << filename << endl; */
   ifstream file(filename);
 
   if (!file.is_open()) {
@@ -40,5 +42,9 @@ stack<Tag> XmlParser::readXmlTagsWithLineNumbers(const string &filename) {
   }
 
   file.close();
+  /* while (resultStack.size() > 1) { */
+  /*   cout << resultStack.top().name << resultStack.top().line << endl; */
+  /*   resultStack.pop(); */
+  /* } */
   return resultStack;
 }

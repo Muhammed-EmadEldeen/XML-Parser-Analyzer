@@ -6,6 +6,9 @@
 
 
 #include "UsersVector.cpp"
+#include "User.h"
+#include "UsersData.h"
+
 
 using namespace std;
 
@@ -13,7 +16,10 @@ using namespace std;
 
 
 
-vector <User> getUsersFromXml  (const string& filePath);
+void getUsersFromXml  (const string& filePath);
 string extractFromTag (const string & line , const string &tag);
 User userAnalyze (ifstream& file );
 Post analyzePost(ifstream& file);
+
+
+

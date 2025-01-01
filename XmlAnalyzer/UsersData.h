@@ -16,10 +16,11 @@ vector<User> users;
 #include "User.h"
 
 class UsersData {
-private:
-  vector<User> users;
 
 public:
+
+
+  vector<User> users;
 
   void parseXmlFile(string filename);
   User getMostFollowedUser();
@@ -29,6 +30,7 @@ public:
   vector<Post> getPostsByTopic(string topic);
   vector<vector<int>> getFollowersMatrix();
 
+
   //****Get the user vector functions****//
   vector <User> getUsersFromXml  (string filePath);
   string extractFromTag (const string & line , const string &tag);
@@ -36,6 +38,10 @@ public:
   Post analyzePost(ifstream& file);
   //************************************************//
 
+
+  vector<string> findMutualFollowers(vector<string> userIds);
+  //****Get the user vector functions****//
+  void getUsersFromXml (const string& filePath);
 
 };
 
