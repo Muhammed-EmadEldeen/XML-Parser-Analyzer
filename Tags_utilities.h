@@ -12,23 +12,23 @@ struct Tag {
     int line;
 };
 
-enum ErrorType{UnClosed,UnOpened};
+// enum ErrorType{UnClosed,UnOpened};
 
 
-struct Error {
+// struct Error {
 
-    string tagName;
-    int tagLine;
-    ErrorType errType;
-    //string errType;
-    /*
-                * errType *
-   "Closing tag has no matching opening tag." at the end of the code
-   "Opening tag has no matching closing tag." at the start of the code
-   "Opening tag unclosed properly."
-   "Closed tag unopened properly."
-   */
-};
+//     string tagName;
+//     int tagLine;
+//     ErrorType errType;
+//     //string errType;
+//     /*
+//                 * errType *
+//    "Closing tag has no matching opening tag." at the end of the code
+//    "Opening tag has no matching closing tag." at the start of the code
+//    "Opening tag unclosed properly."
+//    "Closed tag unopened properly."
+//    */
+// };
 
 
 // Helper function to check if a tag is a closing tag
