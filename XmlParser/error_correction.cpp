@@ -3,7 +3,6 @@
 #include <stack>
 #include <string>
 #include <vector>
-
 using namespace std;
 
 void XmlParser::correct(string fileName, string outputFile) {
@@ -22,7 +21,7 @@ void XmlParser::correct(string fileName, string outputFile) {
           correctedXml.push_back("</" + error.tagName + ">");
 
         } else if (error.errType == ErrorType::UnOpened) {
-          correctedXml.push_back("<" + error.tagName + ">");
+          correctedXml.push_back("<" + error.tagName.substr(1) + ">");
           correctedXml.push_back(line);
         }
         temp = false;
