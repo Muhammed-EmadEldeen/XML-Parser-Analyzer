@@ -71,7 +71,8 @@ string replace_byte_pair(string &input, const string &pair,
   return input;
 }
 
-void XmlParser::byte_pair_compress(const string &input_file, const string &output_file) {
+void XmlParser::byte_pair_compress(const string &input_file,
+                                   const string &output_file) {
   string compressed = read_file(input_file);
   // dynamic placeholders generation
   vector<string> placeholders;
@@ -107,8 +108,14 @@ void XmlParser::byte_pair_compress(const string &input_file, const string &outpu
     compressed = replace_byte_pair(compressed, most_frequent_pair, placeholder);
   }
   write_file(output_file, compressed);
-  cout << "File compressed successfully to a file named " << output_file << endl;
+  cout << "File compressed successfully to a file named " << output_file
+       << endl;
+  string s = "mapping.txt";
+  ofstream file(s);
+
   for (const auto &pair : mapping) {
-    cout << pair.first << " -> " << pair.second << endl;
+    file << pair.first << endl;
+    file << pair.second << endl;
   }
+  file.close();
 }
