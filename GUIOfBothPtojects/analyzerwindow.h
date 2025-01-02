@@ -21,7 +21,17 @@
 #include <QTextStream>
 #include <QListWidgetItem>
 
+//
+
+#include "User.h"
+#include "UsersData.h"
+// #include "GraphVisualisation.h"
+
 using namespace std;
+
+//
+
+//
 
 namespace Ui {
 class AnalyzerWindow;

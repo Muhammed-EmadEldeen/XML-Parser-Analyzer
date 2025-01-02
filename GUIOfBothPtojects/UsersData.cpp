@@ -2,9 +2,7 @@
 #include <string>
 #include <vector>
 //usersVector.h
-#include <iostream>
-#include <fstream>
-#include <sstream>
+
 #include "User.h"
 using namespace std;
 
@@ -18,7 +16,29 @@ using namespace std;
 
     vector<Post> UsersData::getPostsByWord(string word){}
     vector<Post> UsersData::getPostsByTopic(string topic){}
-    vector<vector<int>> UsersData::getFollowersMatrix(){}
+    vector<vector<int>> UsersData::getFollowersMatrix(){
+
+        vector<vector<int>> theFollowersVector;
+        vector<int> userOne={1,2,3,4};
+        vector<int> userTwo={2,1,3,4};
+        vector<int> userThree={3,1,4};
+        vector<int> userFour={4,3};
+
+        vector<int> user5={5,2,6,8};
+        vector<int> user6={6,1,5};
+        vector<int> user7={7,1,8};
+        vector<int> user8={8,1};
+
+        theFollowersVector.push_back(userOne);
+        theFollowersVector.push_back(userTwo);
+        theFollowersVector.push_back(userThree);
+        theFollowersVector.push_back(userFour);
+        theFollowersVector.push_back(user5);
+        theFollowersVector.push_back(user6);
+        theFollowersVector.push_back(user7);
+        theFollowersVector.push_back(user8);
+        return theFollowersVector;
+    }
     //
     void UsersData::getUsersFromXml (const string& filePath){}
 
