@@ -73,49 +73,7 @@ int main(int argc, char *argv[])
         );
     MainWindow w;
     w.show();
-    if (argc < 2) {
-        std::cout << "Usage: " << argv[0]
-                  << "Function -i <File Input> -o <File Output>" << std::endl;
-        return a.exec();                                  /////////////////////////////////////  RETURN 1 CHANGED TO RETURN a.exec()
-    } else {
-        if (!strcmp("verify", argv[1])) {
-            // function is verify
-        } else if (!strcmp("compress", argv[1])) {
-            // function is compress
-        } else if (!strcmp("decompress", argv[1])) {
-            // function is decompress
-        } else if (!strcmp("format", argv[1])) {
-            // function is format
-        } else if (!strcmp("json", argv[1])) {
-            // function is json
-        } else if (!strcmp("mini", argv[1])) {
-            // function is mini
-        } else {
-            std::cout << "Invalid function" << std::endl;
-            return 1;
-        }
-    }
-
-
-
-    /* string mode = argv[1];
-    string input_file = argv[3];
-    string output_file = argv[5];
-    string content = read_file(input_file);
-    string result;
-
-    if (mode == "compress") {
-        result = XmlParser::byte_pair_compress(content);
-    }
-    write_file(output_file, result);
-    if (mode == "compress") {
-        for (const auto& pair : mapping) {
-            cout << pair.first << " -> " << pair.second << endl;
-        }
-
-    }
-
-*/
+    return a.exec();
 
 
 
