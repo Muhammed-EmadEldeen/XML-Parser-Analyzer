@@ -6,7 +6,6 @@ CXXFLAGS = -std=c++17 -g -Wall -Wextra -O2
 SRC_DIR = .
 XML_ANALYZER_DIR = XmlAnalyzer
 XML_PARSER_DIR = XmlParser
-XML_ANALYZER_TEST_DIR = $(XML_ANALYZER_DIR)/Testing
 
 # Source files
 SRC = \
@@ -49,7 +48,7 @@ HEADERS = \
 OBJ = $(SRC:.cpp=.o)
 
 # Output executable
-TARGET =  xml_parser
+TARGET =  xml_editor
 
 # Rules
 .PHONY: all clean
