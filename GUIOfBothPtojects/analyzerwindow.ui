@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>getFileDir</string>
+    <string>Get File Dir</string>
    </property>
   </widget>
   <widget class="QLabel" name="pathLabel">
@@ -31,7 +31,7 @@
     <rect>
      <x>160</x>
      <y>30</y>
-     <width>691</width>
+     <width>291</width>
      <height>20</height>
     </rect>
    </property>
@@ -49,7 +49,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>getMostFollowedUser</string>
+    <string>Get Most Followed User</string>
    </property>
   </widget>
   <widget class="QPushButton" name="mutualFollowersBtn">
@@ -62,7 +62,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>mutualFollowers</string>
+    <string>Mutual Followers</string>
    </property>
   </widget>
   <widget class="QPushButton" name="getPostsByWordBtn">
@@ -75,7 +75,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>getPostsByWord</string>
+    <string>Get Posts By Word</string>
    </property>
   </widget>
   <widget class="QPushButton" name="getPostsByTopicBtn">
@@ -88,7 +88,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>getPostsByTopic</string>
+    <string>Get Posts By Topic</string>
    </property>
   </widget>
   <widget class="QPushButton" name="getMostFollowingUserBtn">
@@ -101,7 +101,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>getMostFollowingUser</string>
+    <string>Get Most Following User</string>
    </property>
   </widget>
   <widget class="QLabel" name="getMostFollowedUserLbl">
@@ -140,7 +140,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>parseXmlFile</string>
+    <string>Parse Xml File</string>
    </property>
   </widget>
   <widget class="QLabel" name="parseXmlFileLbl">
@@ -166,7 +166,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Graph visualise</string>
+    <string>Visualise the Graph </string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
@@ -192,7 +192,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">background-color: rgb(0, 0, 0);
+font: 12pt &quot;Segoe UI&quot;;</string>
    </property>
   </widget>
   <widget class="QListWidget" name="getPostsByWordListWidget">
@@ -205,7 +206,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 0, 0);</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="getPostsByWordLineEdit">
@@ -244,7 +246,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 0, 0);</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">

@@ -65,6 +65,9 @@ private slots:
 private:
     Ui::AnalyzerWindow *ui;
     //void displayVectorInListWidget(const vector<string>& vOut , QListWidget* listWidget);
+    // void displayVectorInListWidget(const vector <Error>& vec , QListWidget* listWidget);
+    void displayVectorInListWidget(const vector<string>& vec, QListWidget* listWidget);
+
 
 };
 

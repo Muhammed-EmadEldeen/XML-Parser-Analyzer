@@ -15,52 +15,58 @@
 #include <vector>
 #include <sstream>
 #include <QListWidget>
+#include <QApplication>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsLineItem>
+
+//
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsLineItem>
+#include <QGraphicsTextItem>
+#include <QPen>
+#include <QBrush>
+#include <vector>
+#include <cmath>
+#include "analyzerwindow.h"
 
 using namespace std;
 
 
-// void AnalyzerWindow::displayVectorInListWidget(const vector<string>& vOut , QListWidget* listWidget)
-// {
 
-//     listWidget->clear() ;
 
-//     for(const auto & item : vOut){
-//         listWidget->addItem(QString::fromStdString(item)) ;
-//     }
-// }
-
-void displayVectorInListWidget(const vector<string>& vec, QListWidget* listWidget)
+void AnalyzerWindow::displayVectorInListWidget(const vector<string>& vec, QListWidget* listWidget)
 {
-    // Clear the current content of the list widget
+
+    if (!listWidget) {
+        qWarning() << "listWidget is null!";
+        return;
+    }
+
     listWidget->clear();
 
-    // Populate the list widget with the vector items
-    for (const string& item : vec)
-    {
+    for (const auto& item : vec) {
         listWidget->addItem(QString::fromStdString(item));
+        qDebug() << "The value is:" << item ;
     }
 }
 
-vector<string> parseNumbers(const string& input)
-{
-    vector<string> result;
+
+
+
+
+vector<string> parseNumbers(string input) {
     stringstream ss(input);
-    string token;
-
-    // Split the input string by commas
-    while (getline(ss, token, ','))
-    {
-        // Trim leading and trailing spaces from the token
-        token.erase(0, token.find_first_not_of(" \t"));
-        token.erase(token.find_last_not_of(" \t") + 1);
-
-        if (!token.empty()) // Ignore empty tokens
-        {
-            result.push_back(token);
-        }
+    vector<string> output;
+    string word;
+    while (!ss.eof()) {
+        getline(ss, word, ',');
+        output.push_back(word);
     }
-
-    return result;
+    return output;
 }
 
 string filePath;
@@ -82,7 +88,7 @@ AnalyzerWindow::~AnalyzerWindow()
 
 void AnalyzerWindow::on_dirBtn_clicked()
 {
-    QString dir = QFileDialog::getExistingDirectory(this, tr("Select Directory"));
+    QString dir = QFileDialog::getOpenFileName(this, tr("Open File"));
     filePath =dir.toStdString();
     ui->pathLabel->setText(dir);
 }
@@ -103,7 +109,7 @@ void AnalyzerWindow::on_getMostFollowingUserBtn_clicked()
 }
 
 
-void AnalyzerWindow::on_parseXmlFileBtn_clicked() //youssef
+void AnalyzerWindow::on_parseXmlFileBtn_clicked()
 {
     //UsersDataOne.parseXmlFile(filePath);
     UsersDataOne.getUsersFromXml(filePath);
@@ -138,7 +144,7 @@ void AnalyzerWindow::on_getPostsByWordBtn_clicked()
 {
     QString wordInPost = ui->getPostsByWordLineEdit->text();
     vector<Post> posts = UsersDataOne.getPostsByWord(wordInPost.toStdString());
-    vector<string> postsTopics;
+    vector<string> postsTopics(posts.size());
     for (int i=0; i< posts.size(); i++)
     {
         postsTopics[i]=posts[i].topic;
@@ -154,41 +160,20 @@ void AnalyzerWindow::on_getPostsByTopicBtn_clicked()
 {
     QString topicSearch = ui->getPostsByTopicLineEdit->text();
     vector<Post> posts = UsersDataOne.getPostsByTopic(topicSearch.toStdString());
-    vector<string> postsBody;
+    vector<string> postsBody(posts.size());
     for (int i=0; i< posts.size(); i++)
     {
-        postsBody[i]=posts[i].body.substr(0,10);
+        postsBody[i]=posts[i].body;
     }
 
     displayVectorInListWidget(postsBody,ui->getPostsByTopicListWidget);
     //vector<Post> UsersData::getPostsByTopic(string topic){}
 }
 
-//doneeeee
-
-#include <QApplication>
-#include <QGraphicsScene>
-#include <QGraphicsView>
-#include <QGraphicsEllipseItem>
-#include <QGraphicsLineItem>
 
 
 
 
-//
-#include <QGraphicsScene>
-#include <QGraphicsView>
-#include <QGraphicsEllipseItem>
-#include <QGraphicsLineItem>
-#include <QGraphicsTextItem>
-#include <QPen>
-#include <QBrush>
-#include <vector>
-#include <cmath>
-#include "analyzerwindow.h"
-//#include "User.h"
-//#include "UsersData.h"
-//#include "GraphVisualisation.h"
 using namespace std;
 
 //void GraphVisualisation::on_pushButton_clicked()
@@ -196,18 +181,7 @@ void AnalyzerWindow::on_pushButton_clicked()
 {
     vector<vector<int>> theFollowersVector;
     theFollowersVector = UsersDataOne.getFollowersMatrix();
-    // vector<int> userOne={1,2,3,4};
-    // vector<int> userTwo={2,1,3,4};
-    // vector<int> userThree={3,1,4};
-    // vector<int> userFour={4,3};
-    // theFollowersVector.push_back(userOne);
-    // theFollowersVector.push_back(userTwo);
-    // theFollowersVector.push_back(userThree);
-    // theFollowersVector.push_back(userFour);
 
-
-
-    //vector<vector<int>> UsersData::getFollowersMatrix(){}
     // Create a QGraphicsScene to hold the graph
     QGraphicsScene* scene = new QGraphicsScene(this);
 
@@ -324,5 +298,6 @@ void AnalyzerWindow::on_pushButton_clicked()
     view->setRenderHint(QPainter::Antialiasing);
     view->setGeometry(0, 0, this->width(), this->height());
     view->show();
+
 }
 
