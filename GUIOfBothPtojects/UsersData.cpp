@@ -1,17 +1,52 @@
 #include "UsersData.h"
+#include <fstream>
+#include <iostream>
+#include <map>
 #include <string>
 #include <vector>
-//usersVector.h
+
+// usersVector.h
 
 #include "User.h"
 using namespace std;
 
+/*string filePath;*/
+// void UsersData::parseXmlFile(string filename){}
 
-    /*string filePath;*/
-    //void UsersData::parseXmlFile(string filename){}
-    User UsersData::getMostFollowedUser(){}
-    User UsersData::getMostFollowingUser(){}
-    //vector<User> UsersData::mutualFollowers(User user1, User user2){}
+User UsersData::getMostFollowedUser() {
+  User *mostFollowedUser = nullptr;
+  int maxFollowers = 0;
+
+  for (auto &user : users) {
+    int followerCount = user.getFollowers().size();
+    if (followerCount > maxFollowers) {
+      maxFollowers = followerCount;
+      mostFollowedUser = &user;
+    }
+  }
+
+  return *mostFollowedUser;
+}
+
+User UsersData::getMostFollowingUser() {
+  User *mostFollowingUser = nullptr;
+  map<int, int> followersCount;
+  int maxFollowing = 0;
+  for (auto &user : users) {
+    for (auto &follower : user.getFollowers()) {
+      followersCount[follower.getID()]++;
+    }
+  }
+  for (auto &user : users) {
+    int followingCount = followersCount[user.getID()];
+    if (followingCount > maxFollowing) {
+      maxFollowing = followingCount;
+      mostFollowingUser = &user;
+    }
+  }
+  return *mostFollowingUser;
+}
+// vector<User> UsersData::mutualFollowers(User user1, User user2){}
 User *UsersData::findUserById(int id) {
   for (User &u : users) {
     if (u.getID() == id) {
@@ -43,61 +78,57 @@ vector<string> UsersData::findMutualFollowers(vector<string> userIds) {
   return answer;
 }
 
-
 vector<Post> UsersData::getPostsByWord(string searchWord) {
-    vector<Post> matchingPosts;
-    User* usersearch = nullptr;
-    for (User& user : users) {
-        for (Post& post : user.getPosts()) {
-            if (post.body.find(searchWord) != string::npos || post.topic.find(searchWord) != string::npos) {
-                matchingPosts.push_back(post);
-            }
-        }
+  vector<Post> matchingPosts;
+  User *usersearch = nullptr;
+  for (User &user : users) {
+    for (Post &post : user.getPosts()) {
+      if (post.body.find(searchWord) != string::npos ||
+          post.topic.find(searchWord) != string::npos) {
+        matchingPosts.push_back(post);
+      }
     }
-    
-    return matchingPosts;
+  }
+
+  return matchingPosts;
 }
 
 vector<Post> UsersData::getPostsByTopic(string searchTopic) {
-    vector<Post> matchingPosts;
-    // vector<User> usersposts = users;
-    User* usersss = nullptr;
-    for (User& user : users) {
-        for (Post& post : user.getPosts()) {
-            if (post.topic == searchTopic) {
-                matchingPosts.push_back(post);
-            }
-        }
+  vector<Post> matchingPosts;
+  // vector<User> usersposts = users;
+  User *usersss = nullptr;
+  for (User &user : users) {
+    for (Post &post : user.getPosts()) {
+      if (post.topic == searchTopic) {
+        matchingPosts.push_back(post);
+      }
     }
-    
-    return matchingPosts;
+  }
+
+  return matchingPosts;
 }
 
-    vector<vector<int>> UsersData::getFollowersMatrix(){
+vector<vector<int>> UsersData::getFollowersMatrix() {
+  vector<vector<int>> graph;
+  int users_num = this->users.size();
 
-        vector<vector<int>> theFollowersVector;
-        vector<int> userOne={1,2,3,4};
-        vector<int> userTwo={2,1,3,4};
-        vector<int> userThree={3,1,4};
-        vector<int> userFour={4,3};
+  for (int i = 0; i < users_num; i++) {
+    vector<int> node;
+    node.push_back(this->users[i].getID());
+    vector<User> followers = this->users[i].getFollowers();
+    int followers_num = followers.size();
 
-        vector<int> user5={5,2,6,8};
-        vector<int> user6={6,1,5};
-        vector<int> user7={7,1,8};
-        vector<int> user8={8,1};
-
-        theFollowersVector.push_back(userOne);
-        theFollowersVector.push_back(userTwo);
-        theFollowersVector.push_back(userThree);
-        theFollowersVector.push_back(userFour);
-        theFollowersVector.push_back(user5);
-        theFollowersVector.push_back(user6);
-        theFollowersVector.push_back(user7);
-        theFollowersVector.push_back(user8);
-        return theFollowersVector;
+    for (int j = 0; j < followers_num; j++) {
+      node.push_back(followers[j].getID());
     }
-    //
-    User userAnalyze(ifstream &file);
+
+    graph.push_back(node);
+  }
+
+  return graph;
+}
+//
+User userAnalyze(ifstream &file);
 
 using namespace std;
 
@@ -236,10 +267,3 @@ void UsersData::getUsersFromXml(const string &filePath) {
   file.close();
   return;
 }
-
-
-
-
-
-
-

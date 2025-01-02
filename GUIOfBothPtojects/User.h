@@ -1,3 +1,4 @@
+
 #ifndef USER_H
 #define USER_H
 
@@ -27,12 +28,19 @@ public:
 
   string getName() { return name; }
 
+  void setName(string name) { this->name = name; }
+
+  void setId(int id) { this->id = id; }
+
+  void setFollowers(vector<User> followers) { this->followers = followers; }
+
+  void pushFollower(User follower) { this->followers.push_back(follower); }
+  void pushPost(Post post) { this->posts.push_back(post); }
+
   vector<User> getFollowers() { return followers; }
 
   vector<Post> getPosts() { return posts; }
-
-  User() {
-  }
+  User() {};
 
   User(string name) {
     this->id = ++idCounter;
