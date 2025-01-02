@@ -1,35 +1,38 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <set>
-#include <fstream>
-#include <algorithm>  
 #include "User.h"
 #include "UsersData.h"
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
 using namespace std;
-    vector<string> UsersData::findMutualFollowers(vector<string> userIds) {
-        if (userIds.empty()) {
-            return vector<string>();
-        }       
-        // Count how many times each follower appears
-        map<string, int> followerCount;        
-        // For each user in our input list
-        for (string userId : userIds) {
-            // Get their followers
-            if (users.find(userId) != users.end()) {
-                for (string followerId : users[userId].followers) {
-                    followerCount[followerId]++;
-                }
-            }
-        }      
-        // Find followers who follow all users in our input list
-        vector<string> mutualFollowers;
-        for (auto const& pair : followerCount) {
-            // If follower count equals number of input users, they follow all users
-            if (pair.second == userIds.size()) {
-                mutualFollowers.push_back(pair.first);
-            }
-        }   
-        return mutualFollowers;
+
+User *UsersData::findUserById(int id) {
+  for (User &u : users) {
+    if (u.getID() == id) {
+      return &u;
     }
+  }
+  return nullptr;
+}
+
+vector<string> UsersData::findMutualFollowers(vector<string> userIds) {
+  map<int, int> followers;
+  vector<string> answer;
+
+  for (string id : userIds) {
+    User *currentUser = findUserById(stoi(id));
+    if (!currentUser) {
+      cout << "Error wrong ID" << endl;
+      return answer;
+    }
+    for (User f : currentUser->getFollowers()) {
+      followers[f.getID()]++;
+    }
+  }
+  for (pair<int, int> e : followers) {
+    if (e.second == userIds.size()) {
+      answer.push_back(to_string(e.first));
+    }
+  }
+  return answer;
+}

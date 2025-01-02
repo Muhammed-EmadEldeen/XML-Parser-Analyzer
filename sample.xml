@@ -1,0 +1,146 @@
+<users>
+    <user>
+        <id>1</id>
+        <name>Ahmed Ali</name>
+        <posts>
+            <post>
+                <body>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </body>
+                <topics>
+                    <topic>finance</topic>
+                </topics>
+            </post>
+            <post>
+                <body>
+                    Solar energy is becoming increasingly popular as a renewable source of energy across the globe.
+                </body>
+                <topics>
+                    <topic>solar_energy</topic>
+                </topics>
+            </post>
+        </posts>
+        <followers>
+            <follower>
+                <id>3</id>
+            </follower>
+        </followers>
+    </user>
+    <user>
+        <id>2</id>
+        <name>Yasser Ahmed</name>
+        <posts>
+            <post>
+                <body>
+                    Education is the foundation for building a brighter future for generations to come.
+                </body>
+                <topics>
+                    <topic>education</topic>
+                    <topic>science</topic>
+                </topics>
+            </post>
+        </posts>
+        <followers>
+            <follower>
+                <id>1</id>
+            </follower>
+        </followers>
+    </user>
+    <user>
+        <id>3</id>
+        <name>Mohamed Sherif</name>
+        <posts>
+            <post>
+                <body>
+                    Sports unite people from different backgrounds, promoting teamwork and perseverance.
+                </body>
+                <topics>
+                    <topic>sports</topic>
+                </topics>
+            </post>
+            <post>
+                <body>
+                    Healthy eating is essential for maintaining physical and mental well-being.
+                </body>
+                <topics>
+                    <topic>health</topic>
+                    <topic>wellness</topic>
+                </topics>
+            </post>
+        </posts>
+        <followers>
+            <follower>
+                <id>1</id>
+            </follower>
+            <follower>
+                <id>2</id>
+            </follower>
+        </followers>
+    </user>
+    <user>
+        <id>4</id>
+        <name>Fatma Hassan</name>
+        <posts>
+            <post>
+                <body>
+                    Climate change is a pressing issue that requires global cooperation to mitigate its effects.
+                </body>
+                <topics>
+                    <topic>climate_change</topic>
+                    <topic>environment</topic>
+                </topics>
+            </post>
+        </posts>
+        <followers>
+            <follower>
+                <id>1</id>
+            </follower>
+            <follower>
+                <id>3</id>
+            </follower>
+        </followers>
+    </user>
+    <user>
+        <id>5</id>
+        <name>Amina Said</name>
+        <posts>
+            <post>
+                <body>
+                    Artificial intelligence is transforming industries and shaping the future of technology.
+                </body>
+                <topics>
+                    <topic>ai</topic>
+                    <topic>technology</topic>
+                </topics>
+            </post>
+        </posts>
+        <followers>
+            <follower>
+                <id>4</id>
+            </follower>
+        </followers>
+    </user>
+    <user>
+        <id>6</id>
+        <name>Omar Khaled</name>
+        <posts>
+            <post>
+                <body>
+                    Exploring the depths of space has always been a dream for humanity.
+                </body>
+                <topics>
+                    <topic>space</topic>
+                    <topic>astronomy</topic>
+                </topics>
+            </post>
+        </posts>
+        <followers>
+            <follower>
+                <id>3</id>
+            </follower>
+            <follower>
+                <id>5</id>
+            </follower>
+        </followers>
+    </user>
+</users>

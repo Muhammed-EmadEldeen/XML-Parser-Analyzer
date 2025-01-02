@@ -21,10 +21,18 @@ SRC = \
 	$(XML_PARSER_DIR)/readXmlTags.cpp \
 	$(XML_PARSER_DIR)/Tags_utilities.cpp \
 	$(XML_PARSER_DIR)/XmlParser.cpp \
+	$(XML_ANALYZER_DIR)/getMostFollowingUser.cpp \
+	$(XML_ANALYZER_DIR)/graph.cpp \
+	$(XML_ANALYZER_DIR)/most_followed.cpp \
+	$(XML_ANALYZER_DIR)/findMutualFollowers.cpp \
+	$(XML_ANALYZER_DIR)/searchPosts.cpp \
+	$(XML_ANALYZER_DIR)/searchWord.cpp \
+	$(XML_ANALYZER_DIR)/UsersVector.cpp \
+	$(XML_ANALYZER_DIR)/suggestFollow.cpp \
 
-	# $(XML_ANALYZER_DIR)/getMostFollowingUser.cpp \
-	# $(XML_ANALYZER_DIR)/graph.cpp \
-	# $(XML_ANALYZER_DIR)/most_followed.cpp \
+
+
+	
 # Headers
 HEADERS = \
 	$(XML_ANALYZER_DIR)/User.h \
@@ -33,6 +41,9 @@ HEADERS = \
 	$(XML_PARSER_DIR)/json.h \
 	$(XML_PARSER_DIR)/Tags_utilities.h \
 	$(XML_PARSER_DIR)/XmlParser.h \
+	$(XML_ANALYZER_DIR)/UsersVector.h \
+	$(XML_ANALYZER_DIR)/UsersData.h \
+	$(XML_ANALYZER_DIR)/User.h \
 
 # Object files
 OBJ = $(SRC:.cpp=.o)
