@@ -22,19 +22,24 @@ stack<Tag> XmlParser::readXmlTagsWithLineNumbers(const string &filename) {
   smatch match;
 
   while (getline(file, line)) {
-    lineNumber++;
+    lineNumber++; // increment line number for each line
 
     string::const_iterator searchStart(line.cbegin());
     while (regex_search(searchStart, line.cend(), match, tagRegex)) {
       if (match[1].matched) { // Opening tag
-        resultStack.emplace(match[1].str(), lineNumber);
+        
+        resultStack.emplace(Tag("<" + match[1].str() + ">", lineNumber));
+        
       } else if (match[3].matched) { // Closing tag
-        resultStack.emplace("/" + match[3].str(), lineNumber);
+        
+        resultStack.emplace(Tag("</" + match[3].str() + ">", lineNumber));
+        /*
       } else if (match[4].matched) { // CDATA content
         resultStack.emplace("CDATA: " + match[4].str(), lineNumber);
       } else if (match[5].matched) { // Comment
         resultStack.emplace("Comment: " + match[5].str(), lineNumber);
       }
+      */
       searchStart = match.suffix().first;
     }
   }
