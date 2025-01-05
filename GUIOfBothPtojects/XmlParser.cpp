@@ -353,20 +353,17 @@ inline string XmlParser::byte_pair_compress(const string &input) {
 
 
 
-
-
 // Helper function to check if a tag is a closing tag
-inline bool isClosingTag(const string& tag){
-     return tag[1] == '/';
-}
+inline bool isClosingTag(const string &tag) { return tag[0] == '/'; }
 
 // Helper function to extract the name of a tag (without angle brackets)
-inline string getTagName(const string& tag){
+inline string getTagName(const string &tag) {
     if (isClosingTag(tag)) {
         return tag.substr(2, tag.size() - 3); // Remove </ and >
     }
     return tag.substr(1, tag.size() - 2); // Remove < and >
 }
+
 
 
 // *******Function to simulate reading an XML file as a stack of tags with line numbers****************
@@ -421,7 +418,8 @@ inline stack<Tag> XmlParser::readXmlTagsWithLineNumbers(const string &filename) 
 
 // Function to detect XML errors
 inline vector<Error> XmlParser::XML_error_detection(const string &filename) {
-    stack<Tag> tags = readXmlTagsWithLineNumbers(filename); // Input stack with line numbers
+    stack<Tag> tags =
+        readXmlTagsWithLineNumbers(filename); // Input stack with line numbers
     stack<Tag> reversedTags;                  // To reverse the input stack
     vector<Error> errors;                     // To store error messages
     stack<Tag> openTagsStack;                 // To track unmatched opening tags
