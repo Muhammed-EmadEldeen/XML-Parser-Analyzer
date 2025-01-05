@@ -5,6 +5,20 @@
 #include <stdexcept>
 #include <string>
 
+struct Tag {
+    string name; // Tag name
+    int line;    // Line number where the tag was found
+    
+    Tag(const string &tagName, int lineNumber) : name(tagName), line(lineNumber) {}
+
+  // Overload the output operator for custom printing
+    friend ostream &operator<<(ostream &os, const Tag &tag) {
+        os << "{ \"" << tag.name << "\", " << tag.line << " }";
+        return os;
+    }
+};
+
+
 using namespace std;
 
 stack<Tag> XmlParser::readXmlTagsWithLineNumbers(const string &filename) {
@@ -33,13 +47,13 @@ stack<Tag> XmlParser::readXmlTagsWithLineNumbers(const string &filename) {
       } else if (match[3].matched) { // Closing tag
         
         resultStack.emplace(Tag("</" + match[3].str() + ">", lineNumber));
-        /*
+        
       } else if (match[4].matched) { // CDATA content
         resultStack.emplace("CDATA: " + match[4].str(), lineNumber);
       } else if (match[5].matched) { // Comment
         resultStack.emplace("Comment: " + match[5].str(), lineNumber);
       }
-      */
+      
       searchStart = match.suffix().first;
     }
   }
