@@ -91,13 +91,10 @@ void ParserWindow::loadXMLAsPlainText(const QString &filePath)
     file.close();
 }
 
-void ParserWindow::displayVectorInListWidget(const vector<Error>& errors , QListWidget* listWidget)
-{
-
-    listWidget->clear() ;
-
-    for(const auto & item : errors){
-        listWidget->addItem(QString::fromStdString(item.toString())) ;
+void ParserWindow::displayVectorInListWidget(const std::vector<Error> &errors, QListWidget *listWidget) {
+    listWidget->clear();
+    for (const auto &item : errors) {
+        listWidget->addItem(QString::fromStdString(item.toString()));
     }
 }
 
@@ -353,6 +350,9 @@ void ParserWindow::on_Decompressbtn_clicked()
 */
 
 
+
+
+
 void ParserWindow::on_JsonExpButton_clicked()
 {
     QString textContent = ui->textEdit->toPlainText();
@@ -539,7 +539,7 @@ void ParserWindow::on_XMLExpButton_clicked()
 
 }
 
-
+/*
 void ParserWindow::on_Detectbtn_clicked()
 {
 
@@ -580,11 +580,48 @@ void ParserWindow::on_Detectbtn_clicked()
 
     }
 
+}*/
+
+void ParserWindow::on_Detectbtn_clicked() {
+    QString textContent =ui-> textEdit->toPlainText();
+
+    if (!textContent.isEmpty()) {
+        // Case 1: User entered XML content in QTextEdit
+        QString inputFilePath = QDir::currentPath() + "/temp_input.xml";
+        if (saveToFile(inputFilePath, textContent)) {
+            auto errors = XmlParser::XML_error_detection(inputFilePath.toStdString());
+            displayVectorInListWidget(errors,ui-> listWidget);
+        } else {
+            QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
+        }
+    } else {
+        // Case 2: No content in QTextEdit, prompt for file selection
+        QString inputFilePath = QFileDialog::getOpenFileName(this, "Open XML File", "", "XML Files (*.xml)");
+        if (inputFilePath.isEmpty()) {
+            QMessageBox::warning(this, "No File Selected", "Please select an XML file.");
+            return;
+        }
+
+        auto errors = XmlParser::XML_error_detection(inputFilePath.toStdString());
+        displayVectorInListWidget(errors,ui-> listWidget);
+    }
+}
+/*
+void ParserWindow::on_Detectbtn_clicked() {
+    QString textContent = ui->textEdit->toPlainText();
+
+    if (!textContent.isEmpty()) {
+        QString inputFilePath = QDir::currentPath() + "/temp_input.xml";
+        if (saveToFile(inputFilePath, textContent)) {
+            auto errors = XmlParser::XML_error_detection(inputFilePath.toStdString());
+            displayVectorInListWidget(errors, ui->listWidget);
+        } else {
+            QMessageBox::critical(this, "Error", "Failed to save the temporary input file.");
+        }
+    }
 }
 
-
-
-
+*/
 
 void ParserWindow::on_Decompressbtn_clicked()
 {

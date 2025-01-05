@@ -416,6 +416,9 @@ inline stack<Tag> XmlParser::readXmlTagsWithLineNumbers(const string &filename) 
 
 
 
+
+
+
 // Function to detect XML errors
 inline vector<Error> XmlParser::XML_error_detection(const string &filename) {
     stack<Tag> tags = readXmlTagsWithLineNumbers(filename); // Input stack with line numbers
